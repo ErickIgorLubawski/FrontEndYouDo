@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouDO - Sistema Administrativo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="logo"><img src="./img/logo_YouDO-1.png" alt="Logo YouDO"></div>
+      <nav>
+        <ul>
+  
+          <li class="centrais" >
+            <a class=""><span class="_icon_10oo3_63">🏢  </span><span class="_text_10oo3_67"> Centrais </span></a>
+          </li>
+          <li class="equipamento" >
+            <a class=""><span class="_active_10oo3_58">🔧  </span><span class="_icon_10oo3_63"> Equipamentos </span></a>
+          </li>
+          <!-- <li onclick="showSection('equipamentos')">
+            <a class="_active_10oo3_58" aria-current="page"><span class="_icon_10oo3_63">🔧  </span><span
+              class="_text_10oo3_67">Equipamentos</span></a>
+          </li> -->
+          <li class="clientes" >
+            <a class=""><span class="_active_10oo3_58">👥 </span><span class="_icon_10oo3_63"> Clientes </span></a>
+          </li>
+              <!-- <a class="_active_10oo3_58" aria-current="page"><span class="_icon_10oo3_63">👥  </span><span
+                class="_text_10oo3_67">Clientes</span></a>
+          </li> -->
+          <li onclick="showSection('configuracoes')">
+            <a class=""><span class="_icon_10oo3_63">⚙️  </span><span class="_text_10oo3_67">Configurações</span></a>
+          </li>
+          <li class="sair">
+              <a id="logout-link" href="login.html">
+              <span class="_icon_10oo3_63">🚪</span>
+              <span class="_text_10oo3_67">Sair</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    </aside>
+    <main>
+      <section id="centrais" class="content-section active">
+
+        <h2>Centrais</h2>
+        <div id="centrais-list" class="card-list"></div>
+      </section>
+      
+      <section id="clientes" class="content-section">
+        <h2>Clientes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Nome</th><th>Bio</th><th>Acessos</th><th>Criado em</th><th>Atualizado em</th>
+            </tr>
+          </thead>
+          <tbody id="clientes-tbody"></tbody>
+        </table>
+      </section>
+      <section id="equipamentos" class="content-section">
+        <h2>Equipamentos</h2>
+        <div id="equipamentos-list" class="card-list"></div>
+      </section>
+
+      <section id="configuracoes" class="content-section">
+        <h2>Configurações</h2>
+        <div class="config-status">
+          <div class="config-item">Servidor: <span class="status on">Ligado</span></div>
+        </div>
+		<h3></h3>
+		<a href="https://documenter.getpostman.com/view/22854526/2sB2x3otK3" target="_blank" rel="noopener noreferrer">
+            <img src="https://placehold.co/100x100/f87c00/ffffff?text=Postman" alt="Logo Postman">
+        </a>
+      </section>
+
+      <section id="sair" class="content-section">
+        <h2>Logout</h2>
+        <div class="exit-status">
+          <div class="config-item">Portal: <span class="status off">Logout</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- em vez de <script src="script.js"> -->
+<script type="module" src="./script.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+
+</body>
+</html>
