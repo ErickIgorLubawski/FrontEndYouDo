@@ -1,273 +1,507 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: #333;
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E FONTES
+   Lembre-se de adicionar o link do Google Fonts no <head> do seu HTML:
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+   ========================================================================== */
+
+   body {
+    margin: 0;
+    font-family: 'Lato', sans-serif; /* FONTE ATUALIZADA */
+    background: #fdfdfd; /* Fundo um pouco mais suave que branco puro */
+    color: #333;
+    -webkit-font-smoothing: antialiased; /* Melhora a renderização da fonte */
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* ==========================================================================
+     ESTILOS DA PÁGINA DE LOGIN (Mantidos como estavam)
+     ========================================================================== */
+  
+  .login-body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .login-card {
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  .login-card h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
+  
+  .logo-login {
+    margin-bottom: 30px;
+  }
+  
+  .logo-login img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  .input-group input[type="text"],
+  .input-group input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .input-group input[type="text"]:focus,
+  .input-group input[type="password"]:focus {
+    border-color: #ec6619;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.25);
+  }
+  
+  .login-button {
+    background-color: #ec6619;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    
+    box-sizing: border-box; /* Garante que padding e borda fiquem DENTRO da largura total */
+  }
+  
+  .login-button:hover {
+    background-color: #b33300;
+  }
+  
+  .forgot-password {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .forgot-password a {
+    color: #ec6619;
+    text-decoration: none;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* ==========================================================================
+     ESTRUTURA PRINCIPAL DO DASHBOARD (APP)
+     ========================================================================== */
+  
+  .app {
+    display: flex;
+    height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+    padding: 2rem; /* Mais espaçamento */
+    overflow-y: auto;
+    background-color: #F9FAFB; /* Cor de fundo suave para a área de conteúdo */
+  }
+  
+  
+  /* ==========================================================================
+     ### SIDEBAR RETRÁTIL - REGRAS ATUALIZADAS ###
+     ========================================================================== */
+  
+  .sidebar {
+    width: 220px;
+    background: #ffffff; /* Fundo branco para um look mais limpo */
+    border-right: 1px solid #e5e7eb; /* Borda sutil para separar do conteúdo */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease-in-out; /* Transição suave */
+  }
+  
+  .sidebar .logo {
+    padding: 1rem;
+    font-weight: bold;
+    background: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb; /* Borda abaixo da logo */
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .sidebar nav {
+    flex-grow: 1; /* Faz a navegação ocupar o espaço disponível */
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0; /* Espaço no topo e na base da navegação */
+  }
+  
+  .sidebar nav ul li {
+    cursor: pointer;
+    margin: 0 0.5rem; /* Margens laterais para os itens */
+  }
+  
+  .sidebar nav ul li a {
+    font-weight: 600; /* <-- AQUI! Usando o peso "Semi-bold" do Lato */
+    color: #4b5563;
+    /* O resto das suas regras de alinhamento e cor continuam as mesmas */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  /* Efeito de hover e item ativo */
+  .sidebar nav ul li:hover a,
+  .sidebar nav ul li.active a {
+    background: #FFFBEB; /* Fundo amarelo bem claro */
+    color: #D97706; /* Cor de texto laranja/marrom */
+  }
+  
+  /* ESTADO RECOLHIDO DO SIDEBAR */
+  .sidebar.collapsed {
+    width: 80px; /* Largura do sidebar recolhido */
+  }
+  
+  .sidebar.collapsed ._text_10oo3_67 {
+    display: none; /* Esconde o texto */
+  }
+  
+  .sidebar.collapsed nav ul li a {
+    justify-content: center; /* Centraliza o ícone */
+  }
+  
+  /* BOTÃO DE TOGGLE */
+  .toggle-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%; /* Centraliza o botão */
+    transform: translateX(-50%); /* Ajuste fino da centralização */
+    background: #f3f4f6;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b5563;
+  }
+  
+  .sidebar.collapsed .toggle-btn {
+    /* Não precisa de mudança, ele se ajusta com a largura */
+  }
+  
+  .sidebar li.sair a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* ==========================================================================
+     ### TRANSIÇÃO SUAVE DE CONTEÚDO ###
+     ========================================================================== */
+  .content-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  .content-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ==========================================================================
+     ESTILOS DOS COMPONENTES (CARDS, STATUS, ÍCONES)
+     ========================================================================== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  ._online_14g8r_57, .status.ativo {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  ._offline_14g8r_62 {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+  ._status_14g8r_51 {
+    padding: 4px 12px;
+    border-radius: 9999px; /* Pílula totalmente arredondada */
+    font-size: 12px;
+    font-weight: 500;
+  }
+  ._controllerIcon_14g8r_67, ._serverIcon_14g8r_68 {
+    font-size: 48px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .status.on { background: green; }
+  .status.off { background: red; }
+  
+  
+  /* ==========================================================================
+     ### ESTILOS DOS CARDS MELHORADOS ###
+     ========================================================================== */
+  
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  ._card_14g8r_30 {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ._card_14g8r_30:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+  
+  ._cardHeader_14g8r_44 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  ._cardHeader_14g8r_44 h3 {
+    font-family: 'Poppins';
+    margin: 0;
+    font-size: 1.1rem;
+    color: #111827;
+    font-weight: 500;
+  }
+  
+  ._controllerIcon_14g8r_67 {
+    text-align: center;
+    margin: 20px 0;
+    color: #ec6619;
+  }
+  
+  /* O ícone dentro do card não precisa ser tão grande se for uma imagem/svg */
+  ._controllerIcon_14g8r_67 img {
+      height: 64px;
+      width: 64px;
+      object-fit: contain;
+  }
+  
+  .equipment-details {
+    font-size: 0.9rem;
+    color: #4b5563;
+  }
+  
+  .equipment-details dt {
+    font-weight: 500;
+    float: left;
+    clear: left;
+    width: 100px;
+    margin-bottom: 8px;
+  }
+  
+  .equipment-details dd {
+    margin-left: 110px;
+    margin-bottom: 8px;
+    color: #111827; /* Valor com um pouco mais de destaque */
+  }
+  ._card_14g8r_30 p,
+._card_14g8r_30 dd {
+  /* Propriedade principal: força a quebra de palavras longas */
+  overflow-wrap: break-word;
+
+  /* Bônus: permite que o navegador adicione hífens ao quebrar as palavras.
+     Funciona melhor porque seu HTML já tem lang="pt-BR". */
+  hyphens: auto; 
+}
+/* ==========================================================================
+   ### ESTILOS DO MODAL DE ACESSOS ###
+   ========================================================================== */
+
+   .modal-overlay {
+    position: fixed; /* Fica por cima de toda a página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+    display: none; /* Começa escondido */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Garante que fique na frente de tudo */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal-overlay.active {
+    display: flex; /* Mostra o modal */
+    opacity: 1;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .modal-overlay.active .modal-content {
+    transform: translateY(0);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-header h3 {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+  }
+  
+  .modal-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #9ca3af;
+  }
+  
+  .modal-body ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .modal-body li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .modal-body li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Estilo para o botão na tabela */
+  .view-acessos-btn {
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  .view-acessos-btn:hover {
+    background-color: #e5e7eb;
+  }
+
+  .group-header td {
+    background-color: #f3f4f6; /* Um fundo cinza claro para destacar a linha */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Semi-bold */
+    color: #374151;
+    padding: 10px 15px;
+    border-top: 2px solid #e5e7eb; /* Uma borda superior mais grossa para separar os grupos */
+  }
+  
+  /* Opcional: remover a borda superior do primeiro grupo */
+  .group-header:first-child td {
+    border-top: none;
+  }
+
+
+  /* ==========================================================================
+   ### ANIMAÇÃO DE TRANSIÇÃO DO LOGIN ###
+   (Verifique se este bloco exato está no seu style.css)
+   ========================================================================== */
+
+/* 1. A DEFINIÇÃO DA ANIMAÇÃO (@keyframes) */
+/* Isso define o que a animação faz: vai de opacidade 1 para 0 e sobe 20px. */
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
 
-.login-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
-  /* Um fundo cinza claro */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  /* Ocupa a altura total da viewport */
-  margin: 0;
-  box-sizing: border-box;
-  /* Garante que padding e border não aumentem o tamanho total */
-}
-
-.login-container {
-  width: 100%;
-  max-width: 400px;
-  /* Largura máxima para o container do login */
-  padding: 20px;
-  text-align: center;
-}
-
-.login-card {
-  /* Reutiliza a classe _card_14g8r_30, mas adiciona alguns ajustes para o login */
-  /* Você pode remover 'margin' se não quiser espaçamento adicional */
-  margin: 0 auto;
-  /* Centraliza o card de login */
-  padding: 30px;
-  /* Um pouco mais de padding para o formulário */
-}
-
-.login-card h2 {
-  color: #333;
-  margin-bottom: 25px;
-  font-size: 24px;
-}
-
-.logo-login {
-  margin-bottom: 30px;
-}
-
-.logo-login img {
-  max-width: 180px;
-  /* Ajuste o tamanho da logo na tela de login */
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  /* Centraliza a imagem da logo */
-}
-
-.input-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #555;
-  font-weight: bold;
-}
-
-.input-group input[type="text"],
-.input-group input[type="password"] {
-  width: calc(100% - 20px);
-  /* Ocupa a largura total menos o padding */
-  padding: 12px 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
-  /* Inclui padding e border na largura */
-}
-
-.input-group input[type="text"]:focus,
-.input-group input[type="password"]:focus {
-  border-color: #007bff;
-  /* Cor da borda ao focar */
-  outline: none;
-  /* Remove o contorno padrão do navegador */
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-  /* Sombra suave ao focar */
-}
-
-.login-button {
-  background-color: #ec6619;
-  /* Cor primária de um botão */
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 12px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  /* Transição suave no hover */
-}
-
-.login-button:hover {
-  background-color: #b33300;
-  /* Cor mais escura no hover */
-}
-
-.forgot-password {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.forgot-password a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.forgot-password a:hover {
-  text-decoration: underline;
-}
-
-.app {
-  display: flex;
-  height: 100vh;
-}
-.sidebar {
-  width: 220px;
-  background: #f5f5f5;
-  transition: width 0.3s;
-  position: relative;
-}
-.sidebar .logo {
-  padding: 1rem;
-  font-weight: bold;
-  background: #f0ede7;
-  color: white;
-  font-size: 1.2rem;
-  text-align: center;
-}
-.logo img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.sidebar nav ul li {
-  padding: 1rem;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-.sidebar nav ul li:hover, .sidebar nav ul li.active {
-  background: #FF9800;
-  color: white;
-}
-.toggle-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-main {
-  flex: 1;
-  padding: 1rem;
-  overflow-y: auto;
-}
-.content-section {
-  display: none;
-}
-.content-section.active {
-  display: block;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-._online_14g8r_57 {
-  background-color: #a5d6a7;
-  color: #2e7d32
-}
-._offline_14g8r_62 {
-  background-color: #ef9a9a;
-  color: #c62828
-}
-._status_14g8r_51 {
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 14px
-}
-._controllerIcon_14g8r_67,
-._serverIcon_14g8r_68 {
-  font-size: 48px;
-  text-align: center;
-  margin: 20px 0
-}
-._card_14g8r_30 {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 1px 3px #0000001a
-}
-._cardHeader_14g8r_44 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px
-}
-.card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-.card {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-  background: #fafafa;
-}
-.status {
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: white;
-}
-.status.on {
-  background: green;
-}
-.status.off {
-  background: red;
-}
-.clientes-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.cliente-card {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-.cliente-card h3 {
-  margin: 0 0 5px 0;
-  color: #333;
-}
-
-.cliente-card p {
-  margin: 2px 0;
-  color: #555;
-}
-/* remove o estilo padrão de link azul no “Sair” */
-.sidebar li.sair a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
+/* 2. A CLASSE QUE ATIVA A ANIMAÇÃO */
+/* Isso diz: QUANDO o elemento .login-card TAMBÉM tiver a classe .logging-in... */
+.login-card.logging-in {
+  /* ...aplique a animação 'fadeOutUp', com duração de 0.5s e mantenha o estado final. */
+  animation: fadeOutUp 0.5s forwards;
 }

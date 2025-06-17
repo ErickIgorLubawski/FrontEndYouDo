@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YouDO - Sistema Administrativo</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouDO - Sistema Administrativo</title>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <script type="module" src="./script.js"></script>
+
+<div class="modal-overlay" id="acessos-modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title">Detalhes do Acesso</h3>
+      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+    </div>
+    <div class="modal-body" id="acessos-list-container">
+      </div>
+  </div>
+</div>
 <body>
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="logo"><img src="./img/logo_YouDO-1.png" alt="Logo YouDO"></div>
       <nav>
         <ul>
-  
-          <li class="centrais" >
-            <a class=""><span class="_icon_10oo3_63">🏢  </span><span class="_text_10oo3_67"> Centrais </span></a>
+      
+          <li class="centrais">
+            <a><span class="_icon_10oo3_63">🏢</span><span class="_text_10oo3_67">Centrais</span></a>
           </li>
-          <li class="equipamento" >
-            <a class=""><span class="_active_10oo3_58">🔧  </span><span class="_icon_10oo3_63"> Equipamentos </span></a>
+      
+          <li class="equipamento">
+            <a><span class="_icon_10oo3_63">🔧</span><span class="_text_10oo3_67">Equipamentos</span></a>
           </li>
-          <!-- <li onclick="showSection('equipamentos')">
-            <a class="_active_10oo3_58" aria-current="page"><span class="_icon_10oo3_63">🔧  </span><span
-              class="_text_10oo3_67">Equipamentos</span></a>
-          </li> -->
-          <li class="clientes" >
-            <a class=""><span class="_active_10oo3_58">👥 </span><span class="_icon_10oo3_63"> Clientes </span></a>
+      
+          <li class="clientes">
+            <a><span class="_icon_10oo3_63">👥</span><span class="_text_10oo3_67">Clientes</span></a>
           </li>
-              <!-- <a class="_active_10oo3_58" aria-current="page"><span class="_icon_10oo3_63">👥  </span><span
-                class="_text_10oo3_67">Clientes</span></a>
-          </li> -->
+      
           <li onclick="showSection('configuracoes')">
-            <a class=""><span class="_icon_10oo3_63">⚙️  </span><span class="_text_10oo3_67">Configurações</span></a>
+            <a><span class="_icon_10oo3_63">⚙️</span><span class="_text_10oo3_67">Configurações</span></a>
           </li>
+      
           <li class="sair">
-              <a id="logout-link" href="login.html">
+            <a id="logout-link" href="login.html">
               <span class="_icon_10oo3_63">🚪</span>
               <span class="_text_10oo3_67">Sair</span>
             </a>
           </li>
+      
         </ul>
       </nav>
       <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
