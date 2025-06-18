@@ -39,7 +39,9 @@ document.querySelector('.sidebar li.clientes')?.addEventListener('click', () => 
   showSection('clientes'); // torna a seção visível
   renderClientes();
 });
-
+document.querySelector('.sidebar li.configuracoes')?.addEventListener('click', () => {
+  showSection('configuracoes');
+});
 function openAcessosModal(clienteNome, acessos) {
   modalTitle.textContent = `Acessos de ${clienteNome}`;
   acessosListContainer.innerHTML = ''; // Limpa a lista anterior
@@ -64,7 +66,6 @@ function openAcessosModal(clienteNome, acessos) {
 function closeModal() {
   modalOverlay.classList.remove('active');
 }
-
 modalCloseBtn.addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', (event) => {
   if (event.target === modalOverlay) { // Fecha só se clicar no fundo
@@ -188,6 +189,7 @@ async function renderEquipamentos() {
     equipList.innerHTML = '<p>Erro ao carregar equipamentos.</p>';
   }
 }
+// RENDERIZAÇÃO DAS CENTRAIS (DINÂMICO COM API)
 async function renderClientes() {
   const tbody = document.getElementById('clientes-tbody');
   if (!tbody) {
@@ -300,13 +302,11 @@ async function renderClientes() {
     // ... (código de erro)
   }
 }
-
 // ---------------------------------------- MENU LATERAL  ----------------------------------------
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('collapsed');
 }
 document.querySelector('.toggle-btn')?.addEventListener('click', toggleSidebar);
-
 document.querySelector('.toggle-btn')?.addEventListener('click', toggleSidebar);
 // Fecha o sidebar se o usuário clicar em qualquer lugar fora dele
 // fecha o sidebar se o clique NÃO for dentro dele nem no toggle-btn
@@ -320,14 +320,9 @@ document.addEventListener('click', e => {
     sidebar.classList.add('collapsed');
   }
 });
- document.getElementById('logout-link')?.addEventListener('click', () => {
+document.getElementById('logout-link')?.addEventListener('click', () => {
      logout(); 
-   });
-
-// LOGOUT
-// Arquivo: script.js
-
-// Garanta que o listener do logout faça isso:
+});
 document.getElementById('logout-link')?.addEventListener('click', (e) => {
   e.preventDefault(); // Impede a navegação imediata do link
   
@@ -336,4 +331,29 @@ document.getElementById('logout-link')?.addEventListener('click', (e) => {
   
   // 2. Redireciona para a página de login.
   window.location.href = 'login.html';
+});
+const configSection = document.getElementById('configuracoes');
+
+if (configSection) {
+  const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+      // Verificamos se o atributo 'class' foi modificado
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        // Se a seção de configurações agora contém a classe 'active'...
+        if (configSection.classList.contains('active')) {
+          const lastUpdatedElement = document.getElementById('last-updated');
+          if (lastUpdatedElement) {
+            // ...atualizamos o texto com a data e hora atuais.
+            lastUpdatedElement.textContent = new Date().toLocaleString('pt-BR');
+          }
+        }
+      }
+    }
+  });
+
+  // Inicia a observação na seção de configurações, monitorando mudanças nos seus atributos
+  observer.observe(configSection, { attributes: true });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  renderCentrais();
 });

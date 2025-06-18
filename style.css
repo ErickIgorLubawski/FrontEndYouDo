@@ -505,3 +505,109 @@
   /* ...aplique a animação 'fadeOutUp', com duração de 0.5s e mantenha o estado final. */
   animation: fadeOutUp 0.5s forwards;
 }
+
+/* Adicione/atualize este código no seu arquivo style.css */
+
+/* Grid para a Seção de Configurações */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding-top: 16px;
+}
+
+/* Estilo Base do Card */
+.config-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho do Card */
+.config-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.config-card__header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.config-card__icon {
+  font-size: 1.5rem;
+}
+
+/* Corpo do Card */
+.config-card__body {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: #555;
+  flex-grow: 1;
+}
+
+.config-card__body p {
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+/* Itens de Status (Card 1) */
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+.status-item span:last-child{
+    font-weight: 600;
+}
+
+
+.status-indicator {
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.status-indicator.online {
+  background-color: #e6f7ec;
+  color: #0d8a43;
+}
+
+/* Botões de Recurso (Card 2) */
+.resource-links {
+  margin-top: 16px;
+}
+.resource-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.resource-button.postman {
+  background-color: #FF6C37;
+  color: white;
+}
+
+.resource-button.postman:hover {
+  background-color: #e65622;
+}

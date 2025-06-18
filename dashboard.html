@@ -41,7 +41,7 @@
             <a><span class="_icon_10oo3_63">👥</span><span class="_text_10oo3_67">Clientes</span></a>
           </li>
       
-          <li onclick="showSection('configuracoes')">
+          <li class="configuracoes"> 
             <a><span class="_icon_10oo3_63">⚙️</span><span class="_text_10oo3_67">Configurações</span></a>
           </li>
       
@@ -81,13 +81,51 @@
 
       <section id="configuracoes" class="content-section">
         <h2>Configurações</h2>
-        <div class="config-status">
-          <div class="config-item">Servidor: <span class="status on">Ligado</span></div>
+        
+        <div class="config-grid">
+      
+          <div class="config-card">
+            <div class="config-card__header">
+              <span class="config-card__icon">📊</span>
+              <h3>Status do Sistema</h3>
+            </div>
+            <div class="config-card__body">
+              <div class="status-item">
+                <span>Status da API</span>
+                <span class="status-indicator online">Online</span>
+              </div>
+              <div class="status-item">
+                <span>Banco de Dados</span>
+                <span class="status-indicator online">Conectado</span>
+              </div>
+              <div class="status-item">
+                <span>Versão da API</span>
+                <span>v1.0.0</span>
+              </div>
+              <div class="status-item">
+                <span>Última Verificação</span>
+                <span id="last-updated">--:--:--</span>
+              </div>
+            </div>
+          </div>
+      
+          <div class="config-card">
+            <div class="config-card__header">
+              <span class="config-card__icon">📚</span>
+              <h3>Documentação da API</h3>
+            </div>
+            <div class="config-card__body">
+              <p>Acesse a documentação completa para entender todos os endpoints e funcionalidades disponíveis.</p>
+              <div class="resource-links">
+                <a href="https://documenter.getpostman.com/view/22854526/2sB2x3otK3" target="_blank" rel="noopener noreferrer" class="resource-button postman">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.5836 10.4999C21.5836 10.1999 21.5336 9.8999 21.4336 9.6199C21.3336 9.3399 21.1936 9.0799 21.0136 8.8399C20.8336 8.5999 20.6136 8.3899 20.3536 8.2099C20.0936 8.0299 19.8036 7.8799 19.4836 7.7599L13.1836 5.2699C12.8736 5.1499 12.5536 5.0899 12.2236 5.0899C11.8936 5.0899 11.5736 5.1499 11.2636 5.2699L4.9636 7.7599C4.6436 7.8799 4.3536 8.0299 4.0936 8.2099C3.8336 8.3899 3.6136 8.5999 3.4336 8.8399C3.2536 9.0799 3.1136 9.3399 3.0136 9.6199C2.9136 9.8999 2.8636 10.1999 2.8636 10.4999V16.3299C2.8636 16.6399 2.9136 16.9299 3.0136 17.2199C3.1136 17.4999 3.2536 17.7599 3.4336 17.9999C3.6136 18.2399 3.8336 18.4499 4.0936 18.6299C4.3536 18.8099 4.6436 18.9599 4.9636 19.0799L11.2636 21.5699C11.5736 21.6899 11.8936 21.7499 12.2236 21.7499C12.5536 21.7499 12.8736 21.6899 13.1836 21.5699L19.4836 19.0799C19.8036 18.9599 20.0936 18.8099 20.3536 18.6299C20.6136 18.4499 20.8336 18.2399 21.0136 17.9999C21.1936 17.7599 21.3336 17.4999 21.4336 17.2199C21.5336 16.9299 21.5836 16.6399 21.5836 16.3299V10.4999Z" fill="#FF6C37"></path><path d="M15.2533 13.61C15.2533 14.59 14.4733 15.37 13.4933 15.37H11.8133V17.05H10.1333V11.89H13.4933C14.4733 11.89 15.2533 12.67 15.2533 13.65V13.61ZM13.4933 13.65C13.4933 13.57 13.4933 13.53 13.4933 13.49C13.5033 12.72 12.8333 12.72 12.6833 12.72H11.8133V14.54H12.6833C12.8333 14.54 13.5033 14.54 13.4933 13.77C13.4933 13.73 13.4933 13.69 13.4933 13.65Z" fill="white"></path></svg>
+                  <span>Acessar Documentação</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
         </div>
-		<h3></h3>
-		<a href="https://documenter.getpostman.com/view/22854526/2sB2x3otK3" target="_blank" rel="noopener noreferrer">
-            <img src="https://placehold.co/100x100/f87c00/ffffff?text=Postman" alt="Logo Postman">
-        </a>
       </section>
 
       <section id="sair" class="content-section">
