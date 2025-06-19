@@ -884,3 +884,120 @@
   body.dark-mode .view-acessos-btn:hover {
       background-color: #555;
   }
+
+  /* ... (Seus estilos existentes do CSS) ... */
+
+/* ==========================================================================
+   NOVO: Estilos para Breadcrumbs (Visual Mais Moderno)
+   ========================================================================== */
+.breadcrumb-container {
+  padding: 15px 0; /* Um pouco mais de padding vertical */
+  margin-bottom: 25px; /* Mais espaço abaixo */
+  font-size: 0.95em; /* Levemente maior */
+  color: #666;
+  /* Remover borda inferior aqui, vamos usar separadores visuais */
+  border-bottom: none; /* REMOVIDO: border-bottom: 1px solid #eee; */
+  transition: color 0.3s ease;
+  display: flex; /* Para alinhar os itens horizontalmente */
+  align-items: center; /* Centralizar verticalmente */
+  flex-wrap: wrap; /* Para garantir que quebre a linha em telas pequenas */
+  gap: 5px; /* Espaço entre os itens e separadores */
+}
+
+.breadcrumb-container .breadcrumb-item {
+  display: inline-flex; /* Para alinhar o texto dentro do item */
+  align-items: center;
+  background-color: #f0f2f5; /* Fundo suave para o item */
+  padding: 6px 12px; /* Padding interno */
+  border-radius: 8px; /* Borda arredondada tipo "tag" */
+  font-family: 'Poppins', sans-serif; /* Usar Poppins para o texto do breadcrumb */
+  font-weight: 500;
+  color: #555; /* Cor do texto padrão */
+  white-space: nowrap; /* Evita que o texto quebre */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb-container .breadcrumb-item a {
+  color: #4b5563; /* Cor mais neutra para links no estado normal */
+  text-decoration: none; /* Remover sublinhado padrão */
+  font-weight: 500;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  cursor: pointer; /* Indica que é clicável */
+}
+
+.breadcrumb-container .breadcrumb-item a:hover {
+  color: #ec6619; /* Laranja da sua marca ao passar o mouse */
+  background-color: #e5e7eb; /* Leve mudança de fundo ao passar o mouse */
+  /* text-decoration: underline; -- Opcional se quiser sublinhado no hover */
+}
+
+/* Estilo para o item ATIVO (último item do breadcrumb) */
+.breadcrumb-container .breadcrumb-item.active {
+  background-color: #ec6619; /* Cor principal da sua marca */
+  color: #ffffff; /* Texto branco */
+  font-weight: 600;
+  pointer-events: none; /* Não clicável, é a página atual */
+  cursor: default; /* Cursor padrão */
+}
+
+.breadcrumb-container .breadcrumb-item.active a { /* Caso haja um <a> dentro do ativo por algum motivo */
+  color: #ffffff;
+  cursor: default;
+}
+
+
+/* Separador com ícone SVG (ou usar um caractere unicode como '›' ou '→') */
+.breadcrumb-container .breadcrumb-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0a0a0; /* Cor mais suave para o separador */
+  font-size: 1.2em; /* Tamanho maior para o separador */
+  margin: 0; /* Removendo margem extra, já temos gap */
+  width: 20px; /* Largura fixa para o separador */
+}
+
+/* Ícone de seta para o separador (você pode usar um SVG aqui no script.js) */
+/* Se você usar SVG no script.js, este CSS só precisa estilizar o SVG. */
+.breadcrumb-separator svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor; /* Usa a cor do pai (.breadcrumb-separator) */
+  vertical-align: middle;
+}
+
+
+/* Dark Mode para Breadcrumbs */
+body.dark-mode .breadcrumb-container {
+  color: #b0b0b0;
+  /* border-bottom-color: #4a4a4a; -- removido */
+}
+
+body.dark-mode .breadcrumb-container .breadcrumb-item {
+  background-color: #3f3f3f; /* Fundo mais escuro */
+  color: #e0e0e0;
+}
+
+body.dark-mode .breadcrumb-container .breadcrumb-item a {
+  color: #b0b0b0; /* Cor do link no dark mode */
+}
+
+body.dark-mode .breadcrumb-container .breadcrumb-item a:hover {
+  background-color: #4a4a4a; /* Hover no dark mode */
+  color: #ff9900;
+}
+
+body.dark-mode .breadcrumb-container .breadcrumb-item.active {
+  background-color: #ff9900; /* Laranja da marca no dark mode */
+  color: #2b2b2b; /* Texto escuro no ativo (contraste com o laranja) */
+}
+body.dark-mode .breadcrumb-container .breadcrumb-item.active a {
+  color: #2b2b2b;
+}
+
+body.dark-mode .breadcrumb-container .breadcrumb-separator {
+  color: #777; /* Separador mais suave no dark mode */
+}
+
+
+/* ... (Resto dos seus estilos existentes) ... */
