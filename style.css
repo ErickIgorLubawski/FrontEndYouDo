@@ -1,7 +1,5 @@
 /* ==========================================================================
    CONFIGURAÇÕES GERAIS E FONTES
-   Lembre-se de adicionar o link do Google Fonts no <head> do seu HTML:
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
    ========================================================================== */
 
    body {
@@ -11,10 +9,19 @@
     color: #333;
     -webkit-font-smoothing: antialiased; /* Melhora a renderização da fonte */
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* Garante que os títulos h2 e h3 usem Poppins e outros textos usem Lato */
+  h2, h3 {
+      font-family: 'Poppins', sans-serif;
+  }
+  p, span, a, li, dt, dd, td {
+      font-family: 'Lato', sans-serif;
   }
   
   /* ==========================================================================
-     ESTILOS DA PÁGINA DE LOGIN (Mantidos como estavam)
+     ESTILOS DA PÁGINA DE LOGIN
      ========================================================================== */
   
   .login-body {
@@ -96,8 +103,7 @@
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
-    
-    box-sizing: border-box; /* Garante que padding e borda fiquem DENTRO da largura total */
+    box-sizing: border-box;
   }
   
   .login-button:hover {
@@ -118,7 +124,6 @@
     text-decoration: underline;
   }
   
-  
   /* ==========================================================================
      ESTRUTURA PRINCIPAL DO DASHBOARD (APP)
      ========================================================================== */
@@ -130,24 +135,25 @@
   
   main {
     flex: 1;
-    padding: 2rem; /* Mais espaçamento */
+    padding: 2rem;
     overflow-y: auto;
-    background-color: #F9FAFB; /* Cor de fundo suave para a área de conteúdo */
+    background-color: #F9FAFB;
+    transition: background-color 0.3s ease; /* Transição para o dark mode */
   }
   
   
   /* ==========================================================================
-     ### SIDEBAR RETRÁTIL - REGRAS ATUALIZADAS ###
+     SIDEBAR RETRÁTIL
      ========================================================================== */
   
   .sidebar {
     width: 220px;
-    background: #ffffff; /* Fundo branco para um look mais limpo */
-    border-right: 1px solid #e5e7eb; /* Borda sutil para separar do conteúdo */
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease-in-out; /* Transição suave */
+    transition: width 0.3s ease-in-out, background-color 0.3s ease, border-right-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .sidebar .logo {
@@ -155,7 +161,8 @@
     font-weight: bold;
     background: #ffffff;
     text-align: center;
-    border-bottom: 1px solid #e5e7eb; /* Borda abaixo da logo */
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .logo img {
@@ -166,24 +173,23 @@
   }
   
   .sidebar nav {
-    flex-grow: 1; /* Faz a navegação ocupar o espaço disponível */
+    flex-grow: 1;
   }
   
   .sidebar nav ul {
     list-style: none;
     padding: 0;
-    margin: 1rem 0; /* Espaço no topo e na base da navegação */
+    margin: 1rem 0;
   }
   
   .sidebar nav ul li {
     cursor: pointer;
-    margin: 0 0.5rem; /* Margens laterais para os itens */
+    margin: 0 0.5rem;
   }
   
   .sidebar nav ul li a {
-    font-weight: 600; /* <-- AQUI! Usando o peso "Semi-bold" do Lato */
+    font-weight: 600;
     color: #4b5563;
-    /* O resto das suas regras de alinhamento e cor continuam as mesmas */
     display: flex;
     align-items: center;
     gap: 15px;
@@ -192,32 +198,32 @@
     border-radius: 6px;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
-  /* Efeito de hover e item ativo */
+  
   .sidebar nav ul li:hover a,
   .sidebar nav ul li.active a {
-    background: #FFFBEB; /* Fundo amarelo bem claro */
-    color: #D97706; /* Cor de texto laranja/marrom */
+    background: #FFFBEB;
+    color: #D97706;
   }
   
   /* ESTADO RECOLHIDO DO SIDEBAR */
   .sidebar.collapsed {
-    width: 80px; /* Largura do sidebar recolhido */
+    width: 80px;
   }
   
   .sidebar.collapsed ._text_10oo3_67 {
-    display: none; /* Esconde o texto */
+    display: none;
   }
   
   .sidebar.collapsed nav ul li a {
-    justify-content: center; /* Centraliza o ícone */
+    justify-content: center;
   }
   
-  /* BOTÃO DE TOGGLE */
+  /* BOTÃO DE TOGGLE DA SIDEBAR */
   .toggle-btn {
     position: absolute;
     bottom: 10px;
-    left: 50%; /* Centraliza o botão */
-    transform: translateX(-50%); /* Ajuste fino da centralização */
+    left: 50%;
+    transform: translateX(-50%);
     background: #f3f4f6;
     border: none;
     font-size: 1.5rem;
@@ -229,10 +235,7 @@
     align-items: center;
     justify-content: center;
     color: #4b5563;
-  }
-  
-  .sidebar.collapsed .toggle-btn {
-    /* Não precisa de mudança, ele se ajusta com a largura */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
   }
   
   .sidebar li.sair a {
@@ -242,7 +245,7 @@
   }
   
   /* ==========================================================================
-     ### TRANSIÇÃO SUAVE DE CONTEÚDO ###
+     TRANSIÇÃO SUAVE DE CONTEÚDO
      ========================================================================== */
   .content-section {
     display: none;
@@ -258,7 +261,7 @@
   }
   
   /* ==========================================================================
-     ESTILOS DOS COMPONENTES (CARDS, STATUS, ÍCONES)
+     ESTILOS DOS COMPONENTES (TABELAS, STATUS)
      ========================================================================== */
   table {
     width: 100%;
@@ -268,6 +271,7 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
   }
   
   ._online_14g8r_57, .status.ativo {
@@ -280,7 +284,7 @@
   }
   ._status_14g8r_51 {
     padding: 4px 12px;
-    border-radius: 9999px; /* Pílula totalmente arredondada */
+    border-radius: 9999px;
     font-size: 12px;
     font-weight: 500;
   }
@@ -294,7 +298,7 @@
   
   
   /* ==========================================================================
-     ### ESTILOS DOS CARDS MELHORADOS ###
+     ESTILOS DOS CARDS
      ========================================================================== */
   
   .card-list {
@@ -309,7 +313,7 @@
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Transição para o dark mode */
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -327,14 +331,16 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #f3f4f6;
+    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   ._cardHeader_14g8r_44 h3 {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif; /* CORREÇÃO: Garante Poppins para títulos de cards */
     margin: 0;
     font-size: 1.1rem;
     color: #111827;
     font-weight: 500;
+    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
   ._controllerIcon_14g8r_67 {
@@ -343,11 +349,13 @@
     color: #ec6619;
   }
   
-  /* O ícone dentro do card não precisa ser tão grande se for uma imagem/svg */
   ._controllerIcon_14g8r_67 img {
       height: 64px;
       width: 64px;
       object-fit: contain;
+  }
+  ._controllerIcon_14g8r_67 svg { /* ESTILO PARA ICONES SVG NOS CARDS */
+      transition: fill 0.3s ease; /* Transição para o dark mode */
   }
   
   .equipment-details {
@@ -361,43 +369,46 @@
     clear: left;
     width: 100px;
     margin-bottom: 8px;
+    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
+    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
   .equipment-details dd {
     margin-left: 110px;
     margin-bottom: 8px;
-    color: #111827; /* Valor com um pouco mais de destaque */
+    color: #111827;
+    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
+    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   ._card_14g8r_30 p,
-._card_14g8r_30 dd {
-  /* Propriedade principal: força a quebra de palavras longas */
-  overflow-wrap: break-word;
-
-  /* Bônus: permite que o navegador adicione hífens ao quebrar as palavras.
-     Funciona melhor porque seu HTML já tem lang="pt-BR". */
-  hyphens: auto; 
-}
-/* ==========================================================================
-   ### ESTILOS DO MODAL DE ACESSOS ###
-   ========================================================================== */
-
-   .modal-overlay {
-    position: fixed; /* Fica por cima de toda a página */
+  ._card_14g8r_30 dd {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
+    transition: color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* ==========================================================================
+     ESTILOS DO MODAL DE ACESSOS
+     ========================================================================== */
+  
+  .modal-overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
-    display: none; /* Começa escondido */
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 2000; /* Garante que fique na frente de tudo */
+    z-index: 2000;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
   
   .modal-overlay.active {
-    display: flex; /* Mostra o modal */
+    display: flex;
     opacity: 1;
   }
   
@@ -409,7 +420,7 @@
     width: 90%;
     max-width: 500px;
     transform: translateY(-20px);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-overlay.active .modal-content {
@@ -423,11 +434,13 @@
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-header h3 {
     font-family: 'Poppins', sans-serif;
     margin: 0;
+    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-close-btn {
@@ -436,6 +449,7 @@
     font-size: 2rem;
     cursor: pointer;
     color: #9ca3af;
+    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-body ul {
@@ -446,6 +460,7 @@
   .modal-body li {
     padding: 0.75rem 0;
     border-bottom: 1px solid #f3f4f6;
+    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-body li:last-child {
@@ -460,154 +475,412 @@
     padding: 5px 10px;
     cursor: pointer;
     font-weight: 600;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transição para o dark mode */
   }
   .view-acessos-btn:hover {
     background-color: #e5e7eb;
   }
-
+  
   .group-header td {
-    background-color: #f3f4f6; /* Um fundo cinza claro para destacar a linha */
+    background-color: #f3f4f6;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600;
     color: #374151;
     padding: 10px 15px;
-    border-top: 2px solid #e5e7eb; /* Uma borda superior mais grossa para separar os grupos */
+    border-top: 2px solid #e5e7eb;
+    transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease; /* Transição para o dark mode */
   }
   
-  /* Opcional: remover a borda superior do primeiro grupo */
   .group-header:first-child td {
     border-top: none;
   }
-
-
+  
+  
   /* ==========================================================================
-   ### ANIMAÇÃO DE TRANSIÇÃO DO LOGIN ###
-   (Verifique se este bloco exato está no seu style.css)
-   ========================================================================== */
-
-/* 1. A DEFINIÇÃO DA ANIMAÇÃO (@keyframes) */
-/* Isso define o que a animação faz: vai de opacidade 1 para 0 e sobe 20px. */
-@keyframes fadeOutUp {
-  from {
-    opacity: 1;
-    transform: translateY(0);
+     ANIMAÇÃO DE TRANSIÇÃO DO LOGIN
+     ========================================================================== */
+  
+  @keyframes fadeOutUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
   }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
+  
+  .login-card.logging-in {
+    animation: fadeOutUp 0.5s forwards;
   }
-}
-
-/* 2. A CLASSE QUE ATIVA A ANIMAÇÃO */
-/* Isso diz: QUANDO o elemento .login-card TAMBÉM tiver a classe .logging-in... */
-.login-card.logging-in {
-  /* ...aplique a animação 'fadeOutUp', com duração de 0.5s e mantenha o estado final. */
-  animation: fadeOutUp 0.5s forwards;
-}
-
-/* Adicione/atualize este código no seu arquivo style.css */
-
-/* Grid para a Seção de Configurações */
-.config-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  padding-top: 16px;
-}
-
-/* Estilo Base do Card */
-.config-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-}
-
-/* Cabeçalho do Card */
-.config-card__header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.config-card__header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.config-card__icon {
-  font-size: 1.5rem;
-}
-
-/* Corpo do Card */
-.config-card__body {
-  padding: 16px;
-  font-size: 0.9rem;
-  color: #555;
-  flex-grow: 1;
-}
-
-.config-card__body p {
-  margin-top: 0;
-  line-height: 1.6;
-}
-
-/* Itens de Status (Card 1) */
-.status-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.status-item:last-child {
-  border-bottom: none;
-}
-.status-item span:last-child{
+  
+  /* ==========================================================================
+     ESTILOS DE CONFIGURAÇÕES
+     ========================================================================== */
+  
+  /* Grid para a Seção de Configurações */
+  .config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    padding-top: 16px;
+  }
+  
+  /* Estilo Base do Card */
+  .config-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* Cabeçalho do Card */
+  .config-card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  .config-card__header h3 {
+    margin: 0;
+    font-size: 1.1rem;
     font-weight: 600;
-}
-
-
-.status-indicator {
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-}
-
-.status-indicator.online {
-  background-color: #e6f7ec;
-  color: #0d8a43;
-}
-
-/* Botões de Recurso (Card 2) */
-.resource-links {
-  margin-top: 16px;
-}
-.resource-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.resource-button.postman {
-  background-color: #FF6C37;
-  color: white;
-}
-
-.resource-button.postman:hover {
-  background-color: #e65622;
-}
+    color: #333;
+    transition: color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  .config-card__icon {
+    font-size: 1.5rem;
+    transition: color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* Corpo do Card */
+  .config-card__body {
+    padding: 16px;
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1;
+    transition: color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  .config-card__body p {
+    margin-top: 0;
+    line-height: 1.6;
+    transition: color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* Itens de Status (Card 1) */
+  .status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  .status-item:last-child {
+    border-bottom: none;
+  }
+  .status-item span:last-child{
+      font-weight: 600;
+  }
+  
+  
+  .status-indicator {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  
+  .status-indicator.online {
+    background-color: #e6f7ec;
+    color: #0d8a43;
+  }
+  
+  /* Botões de Recurso (Card 2) */
+  .resource-links {
+    margin-top: 16px;
+  }
+  .resource-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s; /* Transição para o dark mode */
+  }
+  
+  .resource-button.postman {
+    background-color: #FF6C37;
+    color: white;
+  }
+  
+  .resource-button.postman:hover {
+    background-color: #e65622;
+  }
+  .resource-button.postman svg path { /* Estilo para o SVG do Postman */
+      transition: fill 0.3s ease; /* Transição para o dark mode */
+  }
+  
+  /* ==========================================================================
+     ESTILOS DO SWITCH TOGGLE (Comum para light e dark mode)
+     ========================================================================== */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s, background-color 0.3s ease; /* Adicionada transição para o dark mode */
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s, background-color 0.3s ease; /* Adicionada transição para o dark mode */
+  }
+  
+  input:checked + .slider {
+    background-color: #ec6619;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #ec6619;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  /* ==========================================================================
+     NOVO: CONTÊINER FLUTUANTE PARA O TOGGLE DO MODO ESCURO
+     ========================================================================== */
+  .dark-mode-toggle-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #f3f4f6; /* Fundo do container para destacá-lo */
+      padding: 10px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      color: #333; /* Cor do texto no modo claro */
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .dark-mode-label {
+      font-size: 0.9em;
+      font-weight: 500;
+      white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+      transition: opacity 0.3s ease; /* Transição para quando esconder/mostrar */
+  }
+  
+  
+  /* ==========================================================================
+     REGRAS DO DARK MODE
+     ========================================================================== */
+  
+  body.dark-mode {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+  }
+  
+  body.dark-mode main {
+      background-color: #1a1a1a;
+  }
+  
+  body.dark-mode .sidebar {
+      background: #2b2b2b;
+      border-right-color: #3f3f3f;
+  }
+  
+  body.dark-mode .sidebar .logo {
+      background: #2b2b2b;
+      border-bottom-color: #3f3f3f;
+  }
+  
+  body.dark-mode .sidebar nav ul li a {
+      color: #b0b0b0;
+  }
+  
+  body.dark-mode .sidebar nav ul li:hover a,
+  body.dark-mode .sidebar nav ul li.active a {
+      background: #4a4a4a;
+      color: #ff9900;
+  }
+  
+  body.dark-mode .toggle-btn {
+      background: #4a4a4a;
+      color: #b0b0b0;
+  }
+  
+  /* Tabela de Clientes */
+  body.dark-mode table {
+      background-color: #1a1a1a;
+  }
+  body.dark-mode th,
+  body.dark-mode td {
+      border-color: #4a4a4a;
+      color: #e0e0e0;
+  }
+  
+  body.dark-mode th {
+      background-color: #333;
+      color: #f0f0f0;
+  }
+  
+  body.dark-mode tr:nth-child(even) {
+      background-color: #222;
+  }
+  body.dark-mode tr:nth-child(odd) {
+      background-color: #1a1a1a;
+  }
+  
+  body.dark-mode .group-header td {
+      background-color: #3f3f3f;
+      color: #f0f0f0;
+      border-top-color: #4a4a4a;
+  }
+  
+  /* Estilos dos Cards (Centrais, Equipamentos, Configurações) */
+  body.dark-mode ._card_14g8r_30,
+  body.dark-mode .config-card {
+      background-color: #2b2b2b;
+      border-color: #3f3f3f;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  }
+  
+  /* CORREÇÃO DAS FONTES NO CARD DE STATUS DO SISTEMA E OUTROS TEXTOS */
+  body.dark-mode .config-card__body p,
+  body.dark-mode .status-item span,
+  body.dark-mode .equipment-details dt {
+      color: #b0b0b0; /* Cor mais clara para textos secundários no dark mode */
+  }
+  /* Cores dos títulos dos cards */
+  body.dark-mode ._cardHeader_14g8r_44 h3,
+  body.dark-mode .config-card__header h3,
+  body.dark-mode .equipment-details dd {
+      color: #f0f0f0; /* Cor mais clara para títulos e valores */
+  }
+  
+  /* Cores dos Ícones SVG */
+  body.dark-mode ._controllerIcon_14g8r_67 svg {
+      fill: #ff9900; /* Laranja mais claro para ícones SVG */
+  }
+  body.dark-mode .config-card__icon {
+      color: #ff9900; /* Use a cor laranja para os ícones nos cards de configuração */
+  }
+  body.dark-mode .resource-button.postman svg path {
+      fill: #f0f0f0; /* Corrigido para branco ou tom claro para o ícone do Postman */
+  }
+  body.dark-mode .resource-button.postman {
+      background-color: #ec6619; /* Fundo do botão Postman */
+      color: white; /* Texto do botão Postman */
+  }
+  
+  
+  /* Cores dos Status (online/offline/ativo) */
+  body.dark-mode ._status_14g8r_51 {
+      font-weight: 600;
+  }
+  body.dark-mode ._online_14g8r_57,
+  body.dark-mode .status.ativo {
+      background-color: #0c4d21;
+      color: #90ee90;
+  }
+  
+  body.dark-mode ._offline_14g8r_62 {
+      background-color: #7b0000;
+      color: #ff9999;
+  }
+  body.dark-mode .status-indicator.online {
+      background-color: #0c4d21;
+      color: #90ee90;
+  }
+  
+  /* Modal de Acessos */
+  body.dark-mode .modal-content {
+      background: #2b2b2b;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  }
+  body.dark-mode .modal-header {
+      border-bottom-color: #3f3f3f;
+  }
+  body.dark-mode .modal-header h3 {
+      color: #f0f0f0;
+  }
+  body.dark-mode .modal-close-btn {
+      color: #b0b0b0;
+  }
+  body.dark-mode .modal-body li {
+      border-bottom-color: #3f3f3f;
+  }
+  
+  body.dark-mode .acesso-item {
+      background-color: #333;
+      border: none;
+  }
+  body.dark-mode .acesso-item hr {
+      border-top-color: #555;
+  }
+  body.dark-mode .acesso-item h4,
+  body.dark-mode .acesso-item p strong {
+      color: #f0f0f0;
+  }
+  body.dark-mode .acesso-item p {
+      color: #b0b0b0;
+  }
+  
+  /* Botões da Tabela */
+  body.dark-mode .view-acessos-btn {
+      background-color: #4a4a4a;
+      color: #f0f0f0;
+  }
+  body.dark-mode .view-acessos-btn:hover {
+      background-color: #555;
+  }

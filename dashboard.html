@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouDO - Sistema Administrativo</title>
-  
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
-  <script type="module" src="./script.js"></script>
 
 <div class="modal-overlay" id="acessos-modal-overlay">
   <div class="modal-content">
@@ -28,30 +27,30 @@
       <div class="logo"><img src="./img/logo_YouDO-1.png" alt="Logo YouDO"></div>
       <nav>
         <ul>
-      
+
           <li class="centrais">
             <a><span class="_icon_10oo3_63">🏢</span><span class="_text_10oo3_67">Centrais</span></a>
           </li>
-      
+
           <li class="equipamento">
             <a><span class="_icon_10oo3_63">🔧</span><span class="_text_10oo3_67">Equipamentos</span></a>
           </li>
-      
+
           <li class="clientes">
             <a><span class="_icon_10oo3_63">👥</span><span class="_text_10oo3_67">Clientes</span></a>
           </li>
-      
-          <li class="configuracoes"> 
+
+          <li class="configuracoes">
             <a><span class="_icon_10oo3_63">⚙️</span><span class="_text_10oo3_67">Configurações</span></a>
           </li>
-      
+
           <li class="sair">
             <a id="logout-link" href="login.html">
               <span class="_icon_10oo3_63">🚪</span>
               <span class="_text_10oo3_67">Sair</span>
             </a>
           </li>
-      
+
         </ul>
       </nav>
       <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
@@ -62,16 +61,21 @@
         <h2>Centrais</h2>
         <div id="centrais-list" class="card-list"></div>
       </section>
-      
+
       <section id="clientes" class="content-section">
         <h2>Clientes</h2>
         <table>
           <thead>
             <tr>
-              <th>ID</th><th>Nome</th><th>Bio</th><th>Acessos</th><th>Criado em</th><th>Atualizado em</th>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Acessos</th>
+              <th>Criado em</th>
+              <th>Atualizado em</th>
             </tr>
           </thead>
-          <tbody id="clientes-tbody"></tbody>
+          <tbody id="clientes-tbody">
+            </tbody>
         </table>
       </section>
       <section id="equipamentos" class="content-section">
@@ -81,9 +85,9 @@
 
       <section id="configuracoes" class="content-section">
         <h2>Configurações</h2>
-        
+
         <div class="config-grid">
-      
+
           <div class="config-card">
             <div class="config-card__header">
               <span class="config-card__icon">📊</span>
@@ -108,7 +112,7 @@
               </div>
             </div>
           </div>
-      
+
           <div class="config-card">
             <div class="config-card__header">
               <span class="config-card__icon">📚</span>
@@ -124,7 +128,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </section>
 
@@ -136,9 +140,16 @@
       </section>
     </main>
   </div>
-  <!-- em vez de <script src="script.js"> -->
-<script type="module" src="./script.js"></script>
-<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+
+  <div class="dark-mode-toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="slider round"></span>
+    </label>
+    <span class="dark-mode-label">Modo Escuro</span>
+  </div>
+
+  <script type="module" src="./script.js"></script>
 
 </body>
 </html>
