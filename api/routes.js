@@ -6,7 +6,7 @@ export async function fetchCentrais() {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  const resp = await fetch('http://localhost:3001/centrais', {
+  const resp = await fetch('http://mrdprototype.ddns.net:557/centrais', {
     method: 'GET',
     headers: {
       'token': token,
@@ -32,7 +32,7 @@ export async function fetchEquipamentos(centralId = null) {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  let url = 'http://localhost:3001/equipamentos'; // Endpoint do backend para equipamentos
+  let url = 'http://mrdprototype.ddns.net:557/equipamentos'; // Endpoint do backend para equipamentos
 
   if (centralId) {
     url += `?centralId=${centralId}`; // Filtro como query parameter
@@ -70,10 +70,10 @@ export async function fetchClientes(equipamentoID = null) { // Torne o parâmetr
   let url;
   if (equipamentoID) {
     // ATUALIZADO: Sua nova rota de filtro por equipamento
-    url = `http://localhost:3001/usuarios/central?equipamento=${equipamentoID}`;
+    url = `http://mrdprototype.ddns.net:557/usuarios/central?equipamento=${equipamentoID}`;
   } else {
     // Se nenhum equipamentoID for fornecido, chamamos a rota para LISTAR TODOS OS USUÁRIOS
-    url = 'http://localhost:3001/usuarios'; // Assumindo que esta rota lista todos
+    url = 'http://mrdprototype.ddns.net:557/usuarios'; // Assumindo que esta rota lista todos
   }
   
   console.log('DEBUG: URL fetchClientes (para usuários):', url);
