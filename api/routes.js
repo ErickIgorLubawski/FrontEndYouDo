@@ -7,7 +7,7 @@ export async function fetchCentrais() {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  const resp = await fetch('http://localhost:3001/centrais', {
+  const resp = await fetch('http://mrdprototype.ddns.net:3001/centrais', {
     method: 'GET',
     headers: {
       'token': token,
@@ -26,7 +26,7 @@ export async function fetchEquipamentos() {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  const resp = await fetch('http://localhost:3001/equipamentosdb', {
+  const resp = await fetch('http://mrdprototype.ddns.net:3001/equipamentosdb', {
     method: 'GET',
     headers: {
       'token': token,
@@ -48,7 +48,7 @@ export async function fetchClientes() {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  const resp = await fetch('http://localhost:3001/usuarios', {
+  const resp = await fetch('http://mrdprototype.ddns.net:3001/usuarios', {
     method: 'GET',
     headers: {
       'token': token,
