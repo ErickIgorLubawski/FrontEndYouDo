@@ -1000,4 +1000,80 @@ body.dark-mode .breadcrumb-container .breadcrumb-separator {
 }
 
 
-/* ... (Resto dos seus estilos existentes) ... */
+/* style.css */
+/* ... seus estilos existentes ... */
+
+/* Estilos para o novo ListBox (select) */
+.central-filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container {
+  margin-bottom: 20px;
+  display: flex; /* Garante que os selects fiquem lado a lado */
+  align-items: center;
+  gap: 15px; /* Espaço entre os selects */
+  flex-wrap: wrap; /* Para responsividade */
+}
+
+.filter-select {
+  padding: 10px 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  appearance: none; /* Remove a seta padrão do navegador */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Seta customizada */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  min-width: 200px; /* Largura mínima para o ListBox */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.filter-select:hover {
+  border-color: #d1d5db;
+}
+
+.filter-select:focus {
+  border-color: #ec6619;
+  box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.2);
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode .filter-select {
+  background-color: #2b2b2b;
+  border-color: #3f3f3f;
+  color: #e0e0e0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23b0b0b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+}
+
+body.dark-mode .filter-select:hover {
+  border-color: #4a4a4a;
+}
+
+body.dark-mode .filter-select:focus {
+  border-color: #ff9900;
+  box-shadow: 0 0 0 3px rgba(255,153,0,0.2);
+}
+
+/* Esconder label visualmente, mas manter para acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

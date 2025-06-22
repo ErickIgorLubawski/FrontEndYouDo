@@ -57,15 +57,26 @@
     </aside>
     <main>
       <section id="centrais" class="content-section active">
-        <div class="breadcrumb-container" id="centrais-breadcrumb"></div> <h2 id="centrais-section-title">Centrais</h2> <div id="centrais-list" class="card-list"></div>
+        <div class="breadcrumb-container" id="centrais-breadcrumb"></div>
+        <h2 id="centrais-section-title">Centrais</h2>
+        <div id="centrais-list" class="card-list"></div>
       </section>
 
       <section id="equipamentos" class="content-section">
-        <div class="breadcrumb-container" id="equipamentos-breadcrumb"></div> <h2 id="equipamentos-section-title">Equipamentos</h2> <div id="equipamentos-list" class="card-list"></div>
+        <div class="breadcrumb-container" id="equipamentos-breadcrumb"></div>
+        <h2 id="equipamentos-section-title">Equipamentos</h2>
+        <div class="central-filter-container">
+            <label for="central-select-filter" class="sr-only">Filtrar por Central:</label>
+            <select id="central-select-filter" class="filter-select">
+                </select>
+        </div>
+        <div id="equipamentos-list" class="card-list"></div>
       </section>
 
       <section id="clientes" class="content-section">
-        <div class="breadcrumb-container" id="clientes-breadcrumb"></div> <h2 id="clientes-section-title">Clientes</h2> <table>
+        <div class="breadcrumb-container" id="clientes-breadcrumb"></div>
+        <h2 id="clientes-section-title">Clientes</h2>
+        <div class="filter-container"></div> <table>
           <thead>
             <tr>
               <th>ID</th>
@@ -81,7 +92,9 @@
       </section>
 
       <section id="configuracoes" class="content-section">
-        <div class="breadcrumb-container" id="configuracoes-breadcrumb"></div> <h2 id="configuracoes-section-title">Configurações</h2> <div class="config-grid">
+        <div class="breadcrumb-container" id="configuracoes-breadcrumb"></div>
+        <h2 id="configuracoes-section-title">Configurações</h2>
+        <div class="config-grid">
 
           <div class="config-card">
             <div class="config-card__header">
