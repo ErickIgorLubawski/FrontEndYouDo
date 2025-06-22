@@ -867,6 +867,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     navigateTo(initialSection, initialParams, false);
 
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+    }
+
+    // Listener para fechar o modal clicando fora dele
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) { // Verifica se o clique foi no overlay, não no conteúdo do modal
+                closeModal();
+            }
+        });
+    }
+
     // Observador para a seção de configurações (já existia)
     const configSection = document.getElementById('configuracoes');
     if (configSection) {
