@@ -21,24 +21,30 @@ export async function fetchCentrais() {
 }
 
 /**
- * @description Busca equipamentos, opcionalmente filtrados por centralId (query parameter).
- * @param {string} [centralId] - O ID da Central para filtrar os equipamentos.
+ * @description Busca equipamentos, opcionalmente filtrados por central_id (query parameter).
+ * @param {string} [device_id] - O ID da Central para filtrar os equipamentos.
  * @returns {Promise<Object>} Promessa que resolve para a resposta JSON da API.
  */
-export async function fetchEquipamentos(centralId = null) {
+export async function fetchEquipamentos(device_id = null) {
   const token = localStorage.getItem('token');
   if (!token) {
     console.log('Token não encontrado no fetchEquipamentos.');
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
+  //console.log('centralid DEBUG MEU',device_id)
 
-  let url = 'http://mrdprototype.ddns.net:3001/equipamentos'; // Endpoint do backend para equipamentos
+  // CORREÇÃO 1: O endpoint correto é 'equipamentosdb'
+  let url = 'http://mrdprototype.ddns.net:3001/equipamentosdb';
 
-  if (centralId) {
-    url += `?centralId=${centralId}`; // Filtro como query parameter
+  if (device_id) {
+    // CORREÇÃO 2: O nome do parâmetro correto é 'central_id'
+    url += `?central_id=${device_id}`; 
+    //url += `?central_id=12364782186`; 
+  //  console.log('DEBUG: URL fetchEquipamentos com centralId:', url);
   }
   
-  console.log('DEBUG: URL fetchEquipamentos:', url);
+  // Este console.log agora mostrará a URL corrigida, que você pode comparar com a do Postman.
+  console.log('DEBUG: URL fetchEquipamentos CORRIGIDA:', url);
 
   const resp = await fetch(url, {
     method: 'GET',
@@ -54,6 +60,7 @@ export async function fetchEquipamentos(centralId = null) {
   }
   return resp.json();
 }
+
 
 /**
  * @description Busca clientes (usuários), filtrados por equipamentoID (path parameter) em uma rota aninhada.
@@ -89,6 +96,70 @@ export async function fetchClientes(equipamentoID = null) { // Torne o parâmetr
   if (!resp.ok) {
     const errorData = await resp.json().catch(() => ({ message: resp.statusText }));
     throw new Error(`Erro ${resp.status} ao buscar clientes: ${errorData.message || resp.statusText}`);
+  }
+  return resp.json();
+}
+/**
+ * @description Busca clientes (usuários), filtrados por central_id (query parameter).
+ * @param {string} centralId - O device_id da Central para filtrar os usuários.
+ * @returns {Promise<Object>} Promessa que resolve para a resposta JSON da API.
+ */
+export async function fetchClientesPorCentral(centralId) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Token não encontrado. Faça login primeiro.');
+  }
+
+  // Monta a URL para o endpoint que filtra usuários por central.
+  const url = `http://mrdprototype.ddns.net:3001/usuarioslocal?central=${centralId}`;
+  
+  console.log('DEBUG: Buscando clientes por central. URL:', url);
+
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'token': token,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (!resp.ok) {
+    const errorData = await resp.json().catch(() => ({ message: resp.statusText }));
+    throw new Error(`Erro ${resp.status} ao buscar clientes por central: ${errorData.message || resp.statusText}`);
+  }
+  return resp.json();
+}
+/**
+ * @description Busca um cliente (usuário) específico pelo seu idYD.
+ * @param {string} idyd - O idYD do usuário a ser buscado.
+ * @returns {Promise<Object>} Promessa que resolve para o objeto do usuário.
+ */
+export async function fetchClientePorIdYD(idyd) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('Token não encontrado. Faça login primeiro.');
+  }
+
+  // Monta a URL para o endpoint que busca um usuário por idyd
+  const url = `http://mrdprototype.ddns.net:3001/usuarios?idyd=${idyd}`;
+  
+  console.log('DEBUG: Buscando cliente por idYD. URL:', url);
+
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'token': token,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  if (!resp.ok) {
+    // Se o usuário não for encontrado (404), não é um erro fatal.
+    if (resp.status === 404) {
+        return { resp: null }; // Retorna nulo para o frontend tratar
+    }
+    const errorData = await resp.json().catch(() => ({ message: resp.statusText }));
+    throw new Error(`Erro ${resp.status} ao buscar cliente por idYD: ${errorData.message || resp.statusText}`);
   }
   return resp.json();
 }

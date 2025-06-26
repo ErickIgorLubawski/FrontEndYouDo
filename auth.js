@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Salva o token imediatamente, isso não precisa esperar.
           localStorage.setItem('token', data.token);
 
-          // ▼▼▼ INÍCIO DA LÓGICA DE TRANSIÇÃO ▼▼▼
+          //  INÍCIO DA LÓGICA DE TRANSIÇÃO 
 
           // 1. Pega o elemento do card de login que queremos animar.
           const loginCard = document.querySelector('.login-card');

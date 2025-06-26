@@ -76,7 +76,13 @@
       <section id="clientes" class="content-section">
         <div class="breadcrumb-container" id="clientes-breadcrumb"></div>
         <h2 id="clientes-section-title">Clientes</h2>
-        <div class="filter-container"></div> <table>
+        <div class="filter-container">
+          <div class="search-container">
+            <input type="text" id="user-id-search-input" placeholder="Buscar por ID do Usuário..." class="search-input">
+            <button id="user-search-btn" class="search-btn">Buscar</button>
+            <button id="user-clear-btn" class="clear-btn" style="display:none;">Limpar</button>
+          </div>
+        </div> <table>
           <thead>
             <tr>
               <th>ID</th>

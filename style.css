@@ -1077,3 +1077,229 @@ body.dark-mode .filter-select:focus {
   white-space: nowrap;
   border-width: 0;
 }
+/* ==========================================================================
+   NOVO: Estilo para o ID da Central no Card
+   ========================================================================== */
+   .central-id {
+    font-size: 0.8em; /* Tamanho menor que o texto principal */
+    color: #6b7280;  /* Cor cinza para dar menos destaque */
+    margin-top: 12px; /* Espaçamento acima dele */
+    text-align: center; /* Alinhado ao centro como o ícone e endereço */
+    font-family: 'Courier New', Courier, monospace; /* Fonte monoespaçada para IDs */
+    word-break: break-all; /* Garante que IDs longos quebrem a linha */
+    padding: 4px;
+    background-color: #f9fafb; /* Um fundo muito sutil */
+    border-radius: 4px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Estilo do ID da Central para o Dark Mode */
+  body.dark-mode .central-id {
+    color: #9ca3af; /* Cor cinza mais clara para o modo escuro */
+    background-color: #00000000; /* Fundo mais escuro e sutil */
+  }
+
+  /* Remove padding e borda padrão da lista de acessos */
+.acessos-detail-list {
+  padding: 0;
+  margin: 0;
+  max-height: 60vh; /* Altura máxima com scroll para muitos acessos */
+  overflow-y: auto;
+  padding-right: 5px; /* Espaço para a barra de rolagem */
+}
+
+/* Estilo de cada item de acesso como um card individual */
+.acesso-item-card {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  list-style-type: none; /* Remove o marcador de lista */
+  transition: background-color 0.3s, border-color 0.3s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.acesso-item-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f3f4f6;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.acesso-item-header h4 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  transition: color 0.3s;
+}
+
+.acesso-item-body {
+  padding: 1rem;
+  display: grid;
+  gap: 0.85rem; /* Espaço entre os detalhes */
+}
+
+.detail-pair {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #4b5563;
+  margin-right: 1rem;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.detail-value {
+  color: #111827;
+  text-align: right;
+  font-weight: 500;
+  transition: color 0.3s;
+  word-break: break-word;
+}
+
+/* Estilo especial para o período, para que fique um embaixo do outro */
+.period-pair {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  border-top: 1px dashed #d1d5db;
+  padding-top: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.period-value {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: #57595d;
+}
+
+/* --- Dark Mode para o novo modal --- */
+
+body.dark-mode .acesso-item-card {
+  background-color: #232323;
+  border-color: #9d9d9d;
+}
+
+body.dark-mode .acesso-item-header {
+  background-color: #4b5563;
+  border-bottom-color: #52525b;
+}
+
+body.dark-mode .acesso-item-header h4,
+body.dark-mode .detail-value {
+  color: #f3f4f6;
+}
+
+body.dark-mode .detail-label {
+  color: #9ca3af;
+}
+
+body.dark-mode .period-value {
+  color: #d1d5db;
+}
+
+body.dark-mode .period-pair {
+    border-top-color: #4b5563;
+}
+.acesso-item-header h4 {
+  text-align: center;
+}
+
+/* 2. Altera a cor do cabeçalho no modo escuro para um cinza mais neutro e elegante */
+body.dark-mode .acesso-item-header {
+  background-color: #2d2d2d; /* ALTERADO: de um cinza-azulado para um cinza-escuro neutro */
+  border-bottom-color: #4a4a4a; /* ALTERADO: para um tom que combina melhor com o novo fundo */
+}
+
+/* ==========================================================================
+   ESTILOS PARA A NOVA BARRA DE BUSCA DE USUÁRIO
+   ========================================================================== */
+
+   .search-container {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove o gap para unir os botões ao input */
+  }
+  
+  .search-input {
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px 0 0 8px; /* Borda arredondada só na esquerda */
+    background-color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease;
+    min-width: 200px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-right: none; /* Remove a borda direita para se juntar ao botão */
+  }
+  
+  .search-input:focus {
+    border-color: #ec6619;
+    box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.2);
+  }
+  
+  .search-btn, .clear-btn {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: background-color 0.2s ease;
+  }
+  
+  .search-btn {
+    border-radius: 0 8px 8px 0; /* Borda arredondada só na direita */
+  }
+  
+  .clear-btn {
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    color: #ef4444; /* Cor vermelha para o 'x' */
+    font-weight: bold;
+  }
+  
+  .search-btn:hover, .clear-btn:hover {
+    background-color: #f3f4f6;
+  }
+  
+  /* --- Dark Mode para a Barra de Busca --- */
+  
+  body.dark-mode .search-input {
+    background-color: #2b2b2b;
+    border-color: #3f3f3f;
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .search-input:focus {
+    border-color: #ff9900;
+    box-shadow: 0 0 0 3px rgba(255,153,0,0.2);
+  }
+  
+  body.dark-mode .search-btn,
+  body.dark-mode .clear-btn {
+    background-color: #374151;
+    border-color: #3f3f3f;
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .clear-btn {
+      color: #f87171; /* Vermelho mais claro para o modo escuro */
+  }
+  
+  
+  body.dark-mode .search-btn:hover,
+  body.dark-mode .clear-btn:hover {
+    background-color: #4b5563;
+  }
