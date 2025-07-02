@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // return; // Use 'return' para não continuar para o fetch durante o teste.
 
       try {
-        const response = await fetch('http://192.168.101.1:3001/usuarios/token', {
+        const response = await fetch('https://youdo.cloudns.nz/usuarios/token', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
