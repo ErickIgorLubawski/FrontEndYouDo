@@ -1,38 +1,35 @@
 /* ==========================================================================
-   CONFIGURAÇÕES GERAIS E FONTES
+   1. CONFIGURAÇÕES GERAIS E FONTES
    ========================================================================== */
 
    body {
     margin: 0;
-    font-family: 'Lato', sans-serif; /* FONTE ATUALIZADA */
-    background: #fdfdfd; /* Fundo um pouco mais suave que branco puro */
+    font-family: 'Lato', sans-serif;
+    background: #fdfdfd;
     color: #333;
-    -webkit-font-smoothing: antialiased; /* Melhora a renderização da fonte */
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  /* Garante que os títulos h2 e h3 usem Poppins e outros textos usem Lato */
   h2, h3 {
       font-family: 'Poppins', sans-serif;
   }
-  p, span, a, li, dt, dd, td {
+  
+  p, span, a, li, dt, dd, td, th, label, input, select, button {
       font-family: 'Lato', sans-serif;
   }
   
   /* ==========================================================================
-     ESTILOS DA PÁGINA DE LOGIN
+     2. PÁGINA DE LOGIN
      ========================================================================== */
   
   .login-body {
-    font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    box-sizing: border-box;
   }
   
   .login-container {
@@ -43,8 +40,10 @@
   }
   
   .login-card {
-    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 12px;
     padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
   
   .login-card h2 {
@@ -60,8 +59,6 @@
   .logo-login img {
     max-width: 180px;
     height: auto;
-    display: block;
-    margin: 0 auto;
   }
   
   .input-group {
@@ -78,19 +75,18 @@
   
   .input-group input[type="text"],
   .input-group input[type="password"] {
-    width: calc(100% - 22px);
-    padding: 12px 10px;
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box;
   }
   
-  .input-group input[type="text"]:focus,
-  .input-group input[type="password"]:focus {
+  .input-group input:focus {
     border-color: #ec6619;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.25);
+    box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.2);
   }
   
   .login-button {
@@ -103,29 +99,23 @@
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;
   }
   
   .login-button:hover {
     background-color: #b33300;
   }
   
-  .forgot-password {
-    margin-top: 15px;
-    font-size: 14px;
+  @keyframes fadeOutUp {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
   }
   
-  .forgot-password a {
-    color: #ec6619;
-    text-decoration: none;
-  }
-  
-  .forgot-password a:hover {
-    text-decoration: underline;
+  .login-card.logging-in {
+    animation: fadeOutUp 0.5s forwards;
   }
   
   /* ==========================================================================
-     ESTRUTURA PRINCIPAL DO DASHBOARD (APP)
+     3. ESTRUTURA PRINCIPAL DO DASHBOARD
      ========================================================================== */
   
   .app {
@@ -138,13 +128,7 @@
     padding: 2rem;
     overflow-y: auto;
     background-color: #F9FAFB;
-    transition: background-color 0.3s ease; /* Transição para o dark mode */
   }
-  
-  
-  /* ==========================================================================
-     SIDEBAR RETRÁTIL
-     ========================================================================== */
   
   .sidebar {
     width: 220px;
@@ -153,23 +137,22 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease-in-out, background-color 0.3s ease, border-right-color 0.3s ease; /* Transição para o dark mode */
+    transition: width 0.3s ease-in-out, background-color 0.3s ease, border-right-color 0.3s ease;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
   }
   
   .sidebar .logo {
     padding: 1rem;
-    font-weight: bold;
-    background: #ffffff;
     text-align: center;
     border-bottom: 1px solid #e5e7eb;
-    transition: background-color 0.3s ease, border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .logo img {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto;
   }
   
   .sidebar nav {
@@ -205,11 +188,6 @@
     color: #D97706;
   }
   
-  /* ESTADO RECOLHIDO DO SIDEBAR */
-  .sidebar.collapsed {
-    width: 80px;
-  }
-  
   .sidebar.collapsed ._text_10oo3_67 {
     display: none;
   }
@@ -218,7 +196,6 @@
     justify-content: center;
   }
   
-  /* BOTÃO DE TOGGLE DA SIDEBAR */
   .toggle-btn {
     position: absolute;
     bottom: 10px;
@@ -235,18 +212,8 @@
     align-items: center;
     justify-content: center;
     color: #4b5563;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
   }
   
-  .sidebar li.sair a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  /* ==========================================================================
-     TRANSIÇÃO SUAVE DE CONTEÚDO
-     ========================================================================== */
   .content-section {
     display: none;
     opacity: 0;
@@ -261,59 +228,24 @@
   }
   
   /* ==========================================================================
-     ESTILOS DOS COMPONENTES (TABELAS, STATUS)
-     ========================================================================== */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  ._online_14g8r_57, .status.ativo {
-    background-color: #dcfce7;
-    color: #166534;
-  }
-  ._offline_14g8r_62 {
-    background-color: #fee2e2;
-    color: #991b1b;
-  }
-  ._status_14g8r_51 {
-    padding: 4px 12px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  ._controllerIcon_14g8r_67, ._serverIcon_14g8r_68 {
-    font-size: 48px;
-    text-align: center;
-    margin: 20px 0;
-  }
-  .status.on { background: green; }
-  .status.off { background: red; }
-  
-  
-  /* ==========================================================================
-     ESTILOS DOS CARDS
+     4. COMPONENTES GERAIS (Cards, Tabelas, Filtros, etc.)
      ========================================================================== */
   
+  /* --- Estilo dos Cards --- */
   .card-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* ALTERADO: Aumenta a largura mínima de cada card para dar mais espaço */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
   }
   
-  ._card_14g8r_30 {
+  ._card_14g8r_30 { /* Classe genérica do card */
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Transição para o dark mode */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -321,7 +253,7 @@
   
   ._card_14g8r_30:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
   }
   
   ._cardHeader_14g8r_44 {
@@ -331,16 +263,14 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #f3f4f6;
-    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   ._cardHeader_14g8r_44 h3 {
-    font-family: 'Poppins', sans-serif; /* CORREÇÃO: Garante Poppins para títulos de cards */
     margin: 0;
     font-size: 1.1rem;
     color: #111827;
     font-weight: 500;
-    transition: color 0.3s ease; /* Transição para o dark mode */
+    word-break: break-word;
   }
   
   ._controllerIcon_14g8r_67 {
@@ -349,55 +279,166 @@
     color: #ec6619;
   }
   
-  ._controllerIcon_14g8r_67 img {
-      height: 64px;
-      width: 64px;
-      object-fit: contain;
-  }
-  ._controllerIcon_14g8r_67 svg { /* ESTILO PARA ICONES SVG NOS CARDS */
-      transition: fill 0.3s ease; /* Transição para o dark mode */
+  .card-location {
+    margin-bottom: 16px; 
+    text-align: center;
+    color: #6b7280;
   }
   
-  .equipment-details {
-    font-size: 0.9rem;
-    color: #4b5563;
+  /* CORREÇÃO DO LAYOUT */
+  .card-details-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid #f3f4f6;
+      width: 100%;
   }
   
-  .equipment-details dt {
+  .central-id, .central-vpn {
+      font-size: 0.8em;
+      color: #6b7280;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+  }
+  
+  .central-id strong, .central-vpn strong {
+      font-family: 'Courier New', Courier, monospace;
+      color: #374151;
+      font-size: 1.1em;
+  }
+  
+  /* --- Estilo dos Status --- */
+  ._status_14g8r_51 {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
     font-weight: 500;
-    float: left;
-    clear: left;
-    width: 100px;
-    margin-bottom: 8px;
-    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
-    transition: color 0.3s ease; /* Transição para o dark mode */
+    border: 1px solid transparent;
   }
   
-  .equipment-details dd {
-    margin-left: 110px;
-    margin-bottom: 8px;
-    color: #111827;
-    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
-    transition: color 0.3s ease; /* Transição para o dark mode */
+  ._online_14g8r_57, .status.ativo {
+    background-color: #dcfce7;
+    color: #166534;
+    border-color: #4ade80; /* Contorno verde */
   }
-  ._card_14g8r_30 p,
-  ._card_14g8r_30 dd {
-    overflow-wrap: break-word;
-    hyphens: auto;
-    font-family: 'Lato', sans-serif; /* CORREÇÃO: Garante Lato */
-    transition: color 0.3s ease; /* Transição para o dark mode */
+  
+  ._offline_14g8r_62 {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-color: #f87171; /* Contorno vermelho */
+  }
+  
+  /* --- Estilos da Tabela --- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f9fafb;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+  .view-acessos-btn {
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  
+  .view-acessos-btn:hover {
+    background-color: #e5e7eb;
+  }
+  
+  /* --- Estilos dos Filtros e Busca --- */
+  .central-filter-container, .filter-container {
+    margin-bottom: 20px;
+    display: none; /* Escondido por padrão, JS controla a visibilidade */
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-select {
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    min-width: 200px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px 0 0 8px;
+    font-size: 1rem;
+    outline: none;
+    min-width: 200px;
+    border-right: none;
+    height: 43px;
+    box-sizing: border-box;
+  }
+  
+  .search-btn, .clear-btn {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: background-color 0.2s ease;
+    height: 43px;
+    box-sizing: border-box;
+  }
+  
+  .search-btn {
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .clear-btn {
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    color: #ef4444;
+    font-weight: bold;
   }
   
   /* ==========================================================================
-     ESTILOS DO MODAL DE ACESSOS
+     5. ESTILOS DO MODAL DE ACESSOS
      ========================================================================== */
   
   .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     display: none;
     justify-content: center;
@@ -420,7 +461,7 @@
     width: 90%;
     max-width: 500px;
     transform: translateY(-20px);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transição para o dark mode */
+    transition: transform 0.3s ease;
   }
   
   .modal-overlay.active .modal-content {
@@ -434,13 +475,10 @@
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
-    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-header h3 {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
-    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
   .modal-close-btn {
@@ -449,857 +487,410 @@
     font-size: 2rem;
     cursor: pointer;
     color: #9ca3af;
-    transition: color 0.3s ease; /* Transição para o dark mode */
   }
   
-  .modal-body ul {
-    list-style-type: none;
+  .acessos-detail-list {
     padding: 0;
-  }
-  
-  .modal-body li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #f3f4f6;
-    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  .modal-body li:last-child {
-    border-bottom: none;
-  }
-  
-  /* Estilo para o botão na tabela */
-  .view-acessos-btn {
-    background-color: #f3f4f6;
-    border: none;
-    border-radius: 6px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s ease, color 0.2s ease; /* Transição para o dark mode */
-  }
-  .view-acessos-btn:hover {
-    background-color: #e5e7eb;
-  }
-  
-  .group-header td {
-    background-color: #f3f4f6;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: #374151;
-    padding: 10px 15px;
-    border-top: 2px solid #e5e7eb;
-    transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  .group-header:first-child td {
-    border-top: none;
-  }
-  
-  
-  /* ==========================================================================
-     ANIMAÇÃO DE TRANSIÇÃO DO LOGIN
-     ========================================================================== */
-  
-  @keyframes fadeOutUp {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-  }
-  
-  .login-card.logging-in {
-    animation: fadeOutUp 0.5s forwards;
-  }
-  
-  /* ==========================================================================
-     ESTILOS DE CONFIGURAÇÕES
-     ========================================================================== */
-  
-  /* Grid para a Seção de Configurações */
-  .config-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
-    padding-top: 16px;
-  }
-  
-  /* Estilo Base do Card */
-  .config-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  /* Cabeçalho do Card */
-  .config-card__header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    border-bottom: 1px solid #e0e0e0;
-    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  .config-card__header h3 {
     margin: 0;
-    font-size: 1.1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+  
+  .acesso-item-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    list-style-type: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .acesso-item-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f3f4f6;
+    text-align: center;
+  }
+  
+  .acesso-item-header h4 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
     font-weight: 600;
-    color: #333;
-    transition: color 0.3s ease; /* Transição para o dark mode */
+    color: #111827;
   }
   
-  .config-card__icon {
-    font-size: 1.5rem;
-    transition: color 0.3s ease; /* Transição para o dark mode */
+  .acesso-item-body {
+    padding: 1rem;
+    display: grid;
+    gap: 0.85rem;
   }
   
-  /* Corpo do Card */
-  .config-card__body {
-    padding: 16px;
-    font-size: 0.9rem;
-    color: #555;
-    flex-grow: 1;
-    transition: color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  .config-card__body p {
-    margin-top: 0;
-    line-height: 1.6;
-    transition: color 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  /* Itens de Status (Card 1) */
-  .status-item {
+  .detail-pair {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-    transition: border-bottom-color 0.3s ease; /* Transição para o dark mode */
+    align-items: flex-start;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
-  .status-item:last-child {
-    border-bottom: none;
-  }
-  .status-item span:last-child{
-      font-weight: 600;
-  }
-  
-  
-  .status-indicator {
+  .detail-label {
     font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.8rem;
+    color: #4b5563;
+    margin-right: 1rem;
+    white-space: nowrap;
   }
   
-  .status-indicator.online {
-    background-color: #e6f7ec;
-    color: #0d8a43;
-  }
-  
-  /* Botões de Recurso (Card 2) */
-  .resource-links {
-    margin-top: 16px;
-  }
-  .resource-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    text-decoration: none;
+  .detail-value {
+    color: #111827;
+    text-align: right;
     font-weight: 500;
-    transition: background-color 0.2s, color 0.2s; /* Transição para o dark mode */
+    word-break: break-word;
   }
   
-  .resource-button.postman {
-    background-color: #FF6C37;
-    color: white;
+  .period-pair {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    border-top: 1px dashed #d1d5db;
+    padding-top: 0.85rem;
+    margin-top: 0.5rem;
   }
   
-  .resource-button.postman:hover {
-    background-color: #e65622;
-  }
-  .resource-button.postman svg path { /* Estilo para o SVG do Postman */
-      transition: fill 0.3s ease; /* Transição para o dark mode */
-  }
-  
-  /* ==========================================================================
-     ESTILOS DO SWITCH TOGGLE (Comum para light e dark mode)
-     ========================================================================== */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s, background-color 0.3s ease; /* Adicionada transição para o dark mode */
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s, background-color 0.3s ease; /* Adicionada transição para o dark mode */
-  }
-  
-  input:checked + .slider {
-    background-color: #ec6619;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #ec6619;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
-  
-  /* ==========================================================================
-     NOVO: CONTÊINER FLUTUANTE PARA O TOGGLE DO MODO ESCURO
-     ========================================================================== */
-  .dark-mode-toggle-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background-color: #f3f4f6; /* Fundo do container para destacá-lo */
-      padding: 10px 15px;
-      border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      color: #333; /* Cor do texto no modo claro */
-      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .dark-mode-label {
-      font-size: 0.9em;
-      font-weight: 500;
-      white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-      transition: opacity 0.3s ease; /* Transição para quando esconder/mostrar */
-  }
-  
-  
-  /* ==========================================================================
-     REGRAS DO DARK MODE
-     ========================================================================== */
-  
-  body.dark-mode {
-      background-color: #1a1a1a;
-      color: #e0e0e0;
-  }
-  
-  body.dark-mode main {
-      background-color: #1a1a1a;
-  }
-  
-  body.dark-mode .sidebar {
-      background: #2b2b2b;
-      border-right-color: #3f3f3f;
-  }
-  
-  body.dark-mode .sidebar .logo {
-      background: #2b2b2b;
-      border-bottom-color: #3f3f3f;
-  }
-  
-  body.dark-mode .sidebar nav ul li a {
-      color: #b0b0b0;
-  }
-  
-  body.dark-mode .sidebar nav ul li:hover a,
-  body.dark-mode .sidebar nav ul li.active a {
-      background: #4a4a4a;
-      color: #ff9900;
-  }
-  
-  body.dark-mode .toggle-btn {
-      background: #4a4a4a;
-      color: #b0b0b0;
-  }
-  
-  /* Tabela de Clientes */
-  body.dark-mode table {
-      background-color: #1a1a1a;
-  }
-  body.dark-mode th,
-  body.dark-mode td {
-      border-color: #4a4a4a;
-      color: #e0e0e0;
-  }
-  
-  body.dark-mode th {
-      background-color: #333;
-      color: #f0f0f0;
-  }
-  
-  body.dark-mode tr:nth-child(even) {
-      background-color: #222;
-  }
-  body.dark-mode tr:nth-child(odd) {
-      background-color: #1a1a1a;
-  }
-  
-  body.dark-mode .group-header td {
-      background-color: #3f3f3f;
-      color: #f0f0f0;
-      border-top-color: #4a4a4a;
-  }
-  
-  /* Estilos dos Cards (Centrais, Equipamentos, Configurações) */
-  body.dark-mode ._card_14g8r_30,
-  body.dark-mode .config-card {
-      background-color: #2b2b2b;
-      border-color: #3f3f3f;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-  }
-  
-  /* CORREÇÃO DAS FONTES NO CARD DE STATUS DO SISTEMA E OUTROS TEXTOS */
-  body.dark-mode .config-card__body p,
-  body.dark-mode .status-item span,
-  body.dark-mode .equipment-details dt {
-      color: #b0b0b0; /* Cor mais clara para textos secundários no dark mode */
-  }
-  /* Cores dos títulos dos cards */
-  body.dark-mode ._cardHeader_14g8r_44 h3,
-  body.dark-mode .config-card__header h3,
-  body.dark-mode .equipment-details dd {
-      color: #f0f0f0; /* Cor mais clara para títulos e valores */
-  }
-  
-  /* Cores dos Ícones SVG */
-  body.dark-mode ._controllerIcon_14g8r_67 svg {
-      fill: #ff9900; /* Laranja mais claro para ícones SVG */
-  }
-  body.dark-mode .config-card__icon {
-      color: #ff9900; /* Use a cor laranja para os ícones nos cards de configuração */
-  }
-  body.dark-mode .resource-button.postman svg path {
-      fill: #f0f0f0; /* Corrigido para branco ou tom claro para o ícone do Postman */
-  }
-  body.dark-mode .resource-button.postman {
-      background-color: #ec6619; /* Fundo do botão Postman */
-      color: white; /* Texto do botão Postman */
-  }
-  
-  
-  /* Cores dos Status (online/offline/ativo) */
-  body.dark-mode ._status_14g8r_51 {
-      font-weight: 600;
-  }
-  body.dark-mode ._online_14g8r_57,
-  body.dark-mode .status.ativo {
-      background-color: #0c4d21;
-      color: #90ee90;
-  }
-  
-  body.dark-mode ._offline_14g8r_62 {
-      background-color: #7b0000;
-      color: #ff9999;
-  }
-  body.dark-mode .status-indicator.online {
-      background-color: #0c4d21;
-      color: #90ee90;
-  }
-  
-  /* Modal de Acessos */
-  body.dark-mode .modal-content {
-      background: #2b2b2b;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
-  }
-  body.dark-mode .modal-header {
-      border-bottom-color: #3f3f3f;
-  }
-  body.dark-mode .modal-header h3 {
-      color: #f0f0f0;
-  }
-  body.dark-mode .modal-close-btn {
-      color: #b0b0b0;
-  }
-  body.dark-mode .modal-body li {
-      border-bottom-color: #3f3f3f;
-  }
-  
-  body.dark-mode .acesso-item {
-      background-color: #333;
-      border: none;
-  }
-  body.dark-mode .acesso-item hr {
-      border-top-color: #555;
-  }
-  body.dark-mode .acesso-item h4,
-  body.dark-mode .acesso-item p strong {
-      color: #f0f0f0;
-  }
-  body.dark-mode .acesso-item p {
-      color: #b0b0b0;
-  }
-  
-  /* Botões da Tabela */
-  body.dark-mode .view-acessos-btn {
-      background-color: #4a4a4a;
-      color: #f0f0f0;
-  }
-  body.dark-mode .view-acessos-btn:hover {
-      background-color: #555;
-  }
-
-  /* ... (Seus estilos existentes do CSS) ... */
-
-/* ==========================================================================
-   NOVO: Estilos para Breadcrumbs (Visual Mais Moderno)
-   ========================================================================== */
-.breadcrumb-container {
-  padding: 15px 0; /* Um pouco mais de padding vertical */
-  margin-bottom: 25px; /* Mais espaço abaixo */
-  font-size: 0.95em; /* Levemente maior */
-  color: #666;
-  /* Remover borda inferior aqui, vamos usar separadores visuais */
-  border-bottom: none; /* REMOVIDO: border-bottom: 1px solid #eee; */
-  transition: color 0.3s ease;
-  display: flex; /* Para alinhar os itens horizontalmente */
-  align-items: center; /* Centralizar verticalmente */
-  flex-wrap: wrap; /* Para garantir que quebre a linha em telas pequenas */
-  gap: 5px; /* Espaço entre os itens e separadores */
-}
-
-.breadcrumb-container .breadcrumb-item {
-  display: inline-flex; /* Para alinhar o texto dentro do item */
-  align-items: center;
-  background-color: #f0f2f5; /* Fundo suave para o item */
-  padding: 6px 12px; /* Padding interno */
-  border-radius: 8px; /* Borda arredondada tipo "tag" */
-  font-family: 'Poppins', sans-serif; /* Usar Poppins para o texto do breadcrumb */
-  font-weight: 500;
-  color: #555; /* Cor do texto padrão */
-  white-space: nowrap; /* Evita que o texto quebre */
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.breadcrumb-container .breadcrumb-item a {
-  color: #4b5563; /* Cor mais neutra para links no estado normal */
-  text-decoration: none; /* Remover sublinhado padrão */
-  font-weight: 500;
-  transition: color 0.2s ease, background-color 0.2s ease;
-  cursor: pointer; /* Indica que é clicável */
-}
-
-.breadcrumb-container .breadcrumb-item a:hover {
-  color: #ec6619; /* Laranja da sua marca ao passar o mouse */
-  background-color: #e5e7eb; /* Leve mudança de fundo ao passar o mouse */
-  /* text-decoration: underline; -- Opcional se quiser sublinhado no hover */
-}
-
-/* Estilo para o item ATIVO (último item do breadcrumb) */
-.breadcrumb-container .breadcrumb-item.active {
-  background-color: #ec6619; /* Cor principal da sua marca */
-  color: #ffffff; /* Texto branco */
-  font-weight: 600;
-  pointer-events: none; /* Não clicável, é a página atual */
-  cursor: default; /* Cursor padrão */
-}
-
-.breadcrumb-container .breadcrumb-item.active a { /* Caso haja um <a> dentro do ativo por algum motivo */
-  color: #ffffff;
-  cursor: default;
-}
-
-
-/* Separador com ícone SVG (ou usar um caractere unicode como '›' ou '→') */
-.breadcrumb-container .breadcrumb-separator {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #a0a0a0; /* Cor mais suave para o separador */
-  font-size: 1.2em; /* Tamanho maior para o separador */
-  margin: 0; /* Removendo margem extra, já temos gap */
-  width: 20px; /* Largura fixa para o separador */
-}
-
-/* Ícone de seta para o separador (você pode usar um SVG aqui no script.js) */
-/* Se você usar SVG no script.js, este CSS só precisa estilizar o SVG. */
-.breadcrumb-separator svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor; /* Usa a cor do pai (.breadcrumb-separator) */
-  vertical-align: middle;
-}
-
-
-/* Dark Mode para Breadcrumbs */
-body.dark-mode .breadcrumb-container {
-  color: #b0b0b0;
-  /* border-bottom-color: #4a4a4a; -- removido */
-}
-
-body.dark-mode .breadcrumb-container .breadcrumb-item {
-  background-color: #3f3f3f; /* Fundo mais escuro */
-  color: #e0e0e0;
-}
-
-body.dark-mode .breadcrumb-container .breadcrumb-item a {
-  color: #b0b0b0; /* Cor do link no dark mode */
-}
-
-body.dark-mode .breadcrumb-container .breadcrumb-item a:hover {
-  background-color: #4a4a4a; /* Hover no dark mode */
-  color: #ff9900;
-}
-
-body.dark-mode .breadcrumb-container .breadcrumb-item.active {
-  background-color: #ff9900; /* Laranja da marca no dark mode */
-  color: #2b2b2b; /* Texto escuro no ativo (contraste com o laranja) */
-}
-body.dark-mode .breadcrumb-container .breadcrumb-item.active a {
-  color: #2b2b2b;
-}
-
-body.dark-mode .breadcrumb-container .breadcrumb-separator {
-  color: #777; /* Separador mais suave no dark mode */
-}
-
-
-/* style.css */
-/* ... seus estilos existentes ... */
-
-/* Estilos para o novo ListBox (select) */
-.central-filter-container {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.filter-container {
-  margin-bottom: 20px;
-  display: flex; /* Garante que os selects fiquem lado a lado */
-  align-items: center;
-  gap: 15px; /* Espaço entre os selects */
-  flex-wrap: wrap; /* Para responsividade */
-}
-
-.filter-select {
-  padding: 10px 15px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background-color: #ffffff;
-  font-family: 'Lato', sans-serif;
-  font-size: 1rem;
-  color: #333;
-  cursor: pointer;
-  outline: none;
-  appearance: none; /* Remove a seta padrão do navegador */
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>'); /* Seta customizada */
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 16px;
-  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-  min-width: 200px; /* Largura mínima para o ListBox */
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.filter-select:hover {
-  border-color: #d1d5db;
-}
-
-.filter-select:focus {
-  border-color: #ec6619;
-  box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.2);
-}
-
-/* Estilos para o modo escuro */
-body.dark-mode .filter-select {
-  background-color: #2b2b2b;
-  border-color: #3f3f3f;
-  color: #e0e0e0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23b0b0b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
-}
-
-body.dark-mode .filter-select:hover {
-  border-color: #4a4a4a;
-}
-
-body.dark-mode .filter-select:focus {
-  border-color: #ff9900;
-  box-shadow: 0 0 0 3px rgba(255,153,0,0.2);
-}
-
-/* Esconder label visualmente, mas manter para acessibilidade */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-/* ==========================================================================
-   NOVO: Estilo para o ID da Central no Card
-   ========================================================================== */
-   .central-id {
-    font-size: 0.8em; /* Tamanho menor que o texto principal */
-    color: #6b7280;  /* Cor cinza para dar menos destaque */
-    margin-top: 12px; /* Espaçamento acima dele */
-    text-align: center; /* Alinhado ao centro como o ícone e endereço */
-    font-family: 'Courier New', Courier, monospace; /* Fonte monoespaçada para IDs */
-    word-break: break-all; /* Garante que IDs longos quebrem a linha */
-    padding: 4px;
-    background-color: #f9fafb; /* Um fundo muito sutil */
-    border-radius: 4px;
-    transition: color 0.3s ease, background-color 0.3s ease;
-  }
-  
-  /* Estilo do ID da Central para o Dark Mode */
-  body.dark-mode .central-id {
-    color: #9ca3af; /* Cor cinza mais clara para o modo escuro */
-    background-color: #00000000; /* Fundo mais escuro e sutil */
-  }
-
-  /* Remove padding e borda padrão da lista de acessos */
-.acessos-detail-list {
-  padding: 0;
-  margin: 0;
-  max-height: 60vh; /* Altura máxima com scroll para muitos acessos */
-  overflow-y: auto;
-  padding-right: 5px; /* Espaço para a barra de rolagem */
-}
-
-/* Estilo de cada item de acesso como um card individual */
-.acesso-item-card {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  list-style-type: none; /* Remove o marcador de lista */
-  transition: background-color 0.3s, border-color 0.3s;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.acesso-item-header {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #f3f4f6;
-  transition: border-color 0.3s, background-color 0.3s;
-}
-
-.acesso-item-header h4 {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111827;
-  transition: color 0.3s;
-}
-
-.acesso-item-body {
-  padding: 1rem;
-  display: grid;
-  gap: 0.85rem; /* Espaço entre os detalhes */
-}
-
-.detail-pair {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.detail-label {
-  font-weight: 600;
-  color: #4b5563;
-  margin-right: 1rem;
-  white-space: nowrap;
-  transition: color 0.3s;
-}
-
-.detail-value {
-  color: #111827;
-  text-align: right;
-  font-weight: 500;
-  transition: color 0.3s;
-  word-break: break-word;
-}
-
-/* Estilo especial para o período, para que fique um embaixo do outro */
-.period-pair {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-  border-top: 1px dashed #d1d5db;
-  padding-top: 0.85rem;
-  margin-top: 0.5rem;
-}
-
-.period-value {
+  .period-value {
     text-align: left;
     display: flex;
     flex-direction: column;
     font-size: 0.85rem;
-    color: #57595d;
-}
-
-/* --- Dark Mode para o novo modal --- */
-
-body.dark-mode .acesso-item-card {
-  background-color: #232323;
-  border-color: #9d9d9d;
-}
-
-body.dark-mode .acesso-item-header {
-  background-color: #4b5563;
-  border-bottom-color: #52525b;
-}
-
-body.dark-mode .acesso-item-header h4,
-body.dark-mode .detail-value {
-  color: #f3f4f6;
-}
-
-body.dark-mode .detail-label {
-  color: #9ca3af;
-}
-
-body.dark-mode .period-value {
-  color: #d1d5db;
-}
-
-body.dark-mode .period-pair {
-    border-top-color: #4b5563;
-}
-.acesso-item-header h4 {
-  text-align: center;
-}
-
-/* 2. Altera a cor do cabeçalho no modo escuro para um cinza mais neutro e elegante */
-body.dark-mode .acesso-item-header {
-  background-color: #2d2d2d; /* ALTERADO: de um cinza-azulado para um cinza-escuro neutro */
-  border-bottom-color: #4a4a4a; /* ALTERADO: para um tom que combina melhor com o novo fundo */
-}
-
-/* ==========================================================================
-   ESTILOS PARA A NOVA BARRA DE BUSCA DE USUÁRIO
-   ========================================================================== */
-
-   .search-container {
-    display: flex;
-    align-items: center;
-    gap: 0; /* Remove o gap para unir os botões ao input */
+    color: #374151;
   }
   
-  .search-input {
-    padding: 10px 15px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px 0 0 8px; /* Borda arredondada só na esquerda */
-    background-color: #ffffff;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    color: #333;
-    outline: none;
-    transition: border-color 0.2s ease;
-    min-width: 200px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    border-right: none; /* Remove a borda direita para se juntar ao botão */
-  }
+  /* ==========================================================================
+     6. DARK MODE
+     ========================================================================== */
   
-  .search-input:focus {
-    border-color: #ec6619;
-    box-shadow: 0 0 0 3px rgba(236, 102, 25, 0.2);
-  }
-  
-  .search-btn, .clear-btn {
-    padding: 10px 12px;
-    border: 1px solid #e5e7eb;
-    cursor: pointer;
-    background-color: #f9fafb;
-    transition: background-color 0.2s ease;
-  }
-  
-  .search-btn {
-    border-radius: 0 8px 8px 0; /* Borda arredondada só na direita */
-  }
-  
-  .clear-btn {
-    border-left: none;
-    border-radius: 0 8px 8px 0;
-    color: #ef4444; /* Cor vermelha para o 'x' */
-    font-weight: bold;
-  }
-  
-  .search-btn:hover, .clear-btn:hover {
-    background-color: #f3f4f6;
-  }
-  
-  /* --- Dark Mode para a Barra de Busca --- */
-  
-  body.dark-mode .search-input {
-    background-color: #2b2b2b;
-    border-color: #3f3f3f;
+  body.dark-mode {
+    background-color: #18181b; /* Cinza um pouco mais quente */
     color: #e0e0e0;
   }
   
-  body.dark-mode .search-input:focus {
-    border-color: #ff9900;
-    box-shadow: 0 0 0 3px rgba(255,153,0,0.2);
+  body.dark-mode main {
+    background-color: #18181b;
+  }
+  
+  body.dark-mode .sidebar {
+    background: #27272a;
+    border-right-color: #3f3f46;
+  }
+  
+  body.dark-mode .sidebar .logo,
+  body.dark-mode ._cardHeader_14g8r_44,
+  body.dark-mode .modal-header {
+    border-bottom-color: #3f3f46;
+  }
+  
+  body.dark-mode .sidebar nav ul li a {
+    color: #a1a1aa;
+  }
+  
+  body.dark-mode .sidebar nav ul li:hover a,
+  body.dark-mode .sidebar nav ul li.active a {
+    background: #3f3f46;
+    color: #fb923c; /* Laranja mais suave */
+  }
+  
+  body.dark-mode .toggle-btn,
+  body.dark-mode .view-acessos-btn:hover {
+    background-color: #3f3f46;
+    color: #a1a1aa;
+  }
+  
+  body.dark-mode ._card_14g8r_30,
+  body.dark-mode .login-card {
+    background-color: #27272a;
+    border-color: #3f3f46;
+  }
+  
+  body.dark-mode ._cardHeader_14g8r_44 h3,
+  body.dark-mode .modal-header h3,
+  body.dark-mode .detail-value {
+    color: #f4f4f5;
+  }
+  
+  body.dark-mode ._controllerIcon_14g8r_67 svg {
+    fill: #fb923c;
+  }
+  
+  body.dark-mode .card-location,
+  body.dark-mode .central-id, 
+  body.dark-mode .central-vpn {
+    color: #a1a1aa;
+  }
+  
+  body.dark-mode .central-id strong, 
+  body.dark-mode .central-vpn strong {
+    color: #e4e4e7;
+  }
+  
+  body.dark-mode .card-details-container {
+    border-top-color: #3f3f46;
+  }
+  
+  body.dark-mode th {
+    background-color: #3f3f46;
+    color: #f4f4f5;
+  }
+  
+  body.dark-mode td,
+  body.dark-mode th {
+    border-color: #3f3f46;
+  }
+  
+  body.dark-mode ._online_14g8r_57,
+  body.dark-mode .status.ativo {
+    background-color: #14532d;
+    color: #86efac;
+    border-color: #4ade80;
+  }
+  
+  body.dark-mode ._offline_14g8r_62 {
+    background-color: #7f1d1d;
+    color: #fca5a5;
+    border-color: #f87171;
+  }
+  
+  body.dark-mode .filter-select,
+  body.dark-mode .search-input {
+    background-color: #27272a;
+    border-color: #3f3f46;
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .filter-select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23a1a1aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
   }
   
   body.dark-mode .search-btn,
   body.dark-mode .clear-btn {
-    background-color: #374151;
-    border-color: #3f3f3f;
-    color: #e0e0e0;
+    background-color: #3f3f46;
+    border-color: #3f3f46;
   }
   
-  body.dark-mode .clear-btn {
-      color: #f87171; /* Vermelho mais claro para o modo escuro */
+  body.dark-mode .modal-content {
+    background: #27272a;
   }
   
-  
-  body.dark-mode .search-btn:hover,
-  body.dark-mode .clear-btn:hover {
-    background-color: #4b5563;
+  body.dark-mode .acesso-item-card {
+    background-color: #18181b;
+    border-color: #3f3f46;
   }
+  
+  body.dark-mode .acesso-item-header {
+    background-color: #27272a;
+    border-bottom-color: #3f3f46;
+  }
+  
+  body.dark-mode .acesso-item-header h4 {
+    color: #f4f4f5;
+  }
+  
+  body.dark-mode .detail-label {
+    color: #a1a1aa;
+  }
+  
+  body.dark-mode .period-value {
+    color: #d4d4d8;
+  }
+  
+  body.dark-mode .period-pair {
+    border-top-color: #3f3f46;
+  }
+  
+  body.dark-mode .view-acessos-btn {
+    background-color: #3f3f46;
+    border-color: #52525b;
+    color: #e4e4e7;
+  }
+
+/* ==========================================================================
+   7. ESTILOS DA PÁGINA DE CONFIGURAÇÕES
+   ========================================================================== */
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.config-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.config-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  transition: border-color 0.3s;
+}
+
+.config-card__header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.config-card__icon {
+  font-size: 1.5rem;
+  color: #ec6619;
+}
+
+.config-card__body {
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+  flex-grow: 1;
+}
+
+.config-card__body p {
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+/* Itens de Status */
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-item span:last-child {
+  font-weight: 600;
+}
+
+.status-indicator {
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.status-indicator.online {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* Links de Recurso */
+.resource-links {
+  margin-top: 1rem;
+}
+
+.resource-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.resource-button.postman {
+  background-color: #FF6C37;
+  color: white;
+}
+
+.resource-button.postman:hover {
+  background-color: #e65622;
+}
+
+/* --- Dark Mode para a página de Configurações --- */
+
+body.dark-mode .config-card {
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+body.dark-mode .config-card__header {
+  border-bottom-color: #3f3f46;
+}
+
+body.dark-mode .config-card__header h3,
+body.dark-mode .config-card__body,
+body.dark-mode .status-item span {
+  color: #f4f4f5;
+}
+
+body.dark-mode .config-card__icon {
+  color: #fb923c;
+}
+
+body.dark-mode .status-item {
+  border-bottom-color: #3f3f46;
+}
+
+body.dark-mode .status-indicator.online {
+  background-color: #14532d;
+  color: #86efac;
+}
+
+body.dark-mode .resource-button.postman svg {
+  fill: white;
+}
+/* ==========================================================================
+   8. MELHORIAS DE LAYOUT PARA CARD DE EQUIPAMENTO
+   ========================================================================== */
+
+/* Remove a definição de float e margin que causa a quebra */
+.equipment-details dt, 
+.equipment-details dd {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+/* Aplica o layout de Grid no container da lista */
+.equipment-details {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Coluna 1 (label) se ajusta ao conteúdo, Coluna 2 (valor) ocupa o resto */
+  gap: 0.5rem 1rem;                /* Espaçamento: 0.5rem vertical, 1rem horizontal */
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.equipment-details dt {
+  font-weight: 600;       /* Dando mais destaque para os labels */
+  color: #4b5563;
+}
+
+.equipment-details dd {
+  text-align: right;      /* Alinha os valores à direita, fica mais organizado */
+  word-break: break-all;  /* Quebra o MAC address ou IP se for muito longo */
+  color: #111827;
+}
+        
+/* --- Dark Mode para os detalhes do equipamento --- */
+body.dark-mode .equipment-details dt {
+    color: #9ca3af;
+}
+
+body.dark-mode .equipment-details dd {
+    color: #d1d5db;
+}

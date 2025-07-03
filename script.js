@@ -229,26 +229,33 @@ window.addEventListener('popstate', (event) => {
 // --- Funções de Renderização de Seções ---
 
 async function renderCentrais() {
+    // Esconde filtros de outras seções
     document.querySelector('#equipamentos .central-filter-container').style.display = 'none';
     document.querySelector('#clientes .filter-container').style.display = 'none';
+    
     const centralList = document.getElementById('centrais-list');
     if (!centralList) return;
+    
     document.getElementById('centrais-section-title').textContent = 'Centrais';
     centralList.innerHTML = '<p>Carregando centrais...</p>';
+
     try {
         if (allCentraisData.length === 0) {
             const { resp = [] } = await fetchCentrais();
             allCentraisData = resp;
         }
+
         centralList.innerHTML = '';
         if (allCentraisData.length === 0) {
             centralList.innerHTML = '<p>Nenhuma central encontrada.</p>';
             return;
         }
+
         allCentraisData.forEach(c => {
             const card = document.createElement('div');
             card.className = '_card_14g8r_30';
             card.onclick = () => navigateTo('equipamentos', { centralId: c.device_id, centralName: c.nomeEdificio });
+
             const header = document.createElement('div');
             header.className = '_cardHeader_14g8r_44';
             const title = document.createElement('h3');
@@ -257,21 +264,41 @@ async function renderCentrais() {
             status.className = `_status_14g8r_51 _${c.status || 'offline'}_14g8r_57`;
             status.textContent = c.status;
             header.append(title, status);
+
             const content = document.createElement('div');
+            content.className = 'card-content'; // Adicionando uma classe para o conteúdo principal
             const icon = document.createElement('div');
             icon.className = '_controllerIcon_14g8r_67';
             icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c8300c" viewBox="0 0 256 256"><path d="M248,210H230V94h2a6,6,0,0,0,0-12H182V46h2a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12h2V210H24a6,6,0,0,0,0,12H248a6,6,0,0,0,0-12ZM218,94V210H182V94ZM54,46H170V210H142V160a6,6,0,0,0-6-6H88a6,6,0,0,0-6,6v50H54Zm76,164H94V166h36ZM74,80a6,6,0,0,1,6-6H96a6,6,0,0,1,0,12H80A6,6,0,0,1,74,80Zm48,0a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,80ZM80,126a6,6,0,0,1,0-12H96a6,6,0,0,1,0,12Zm42-6a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,120Z"></path></svg>`;
+            
             const location = document.createElement('p');
+            location.className = 'card-location';
             location.textContent = `${c.rua}, ${c.numero} - ${c.bairro}`;
-            const centralIdElement = document.createElement('p');
-            centralIdElement.className = 'central-id';
-            centralIdElement.textContent = `Device ID: ${c.device_id}`;
-            content.append(icon, location, centralIdElement);
+
+            // =======================================================================
+            // ALTERAÇÃO AQUI: Criando um container para os detalhes inferiores
+            // =======================================================================
+            const detailsContainer = document.createElement('div');
+            detailsContainer.className = 'card-details-container';
+
+            const deviceIdElement = document.createElement('p');
+            deviceIdElement.className = 'central-id';
+            deviceIdElement.innerHTML = `<span>Device ID:</span> <strong>${c.device_id}</strong>`;
+            
+            const vpnIpElement = document.createElement('p');
+            vpnIpElement.className = 'central-vpn';
+            vpnIpElement.innerHTML = `<span>IP VPN:</span> <strong>${c.ip_VPN || 'N/A'}</strong>`;
+            
+            detailsContainer.append(deviceIdElement, vpnIpElement);
+            
+            content.append(icon, location, detailsContainer);
             card.append(header, content);
             centralList.append(card);
         });
     } catch (err) { console.error('ERROR: Falha ao carregar centrais:', err); }
 }
+
+// Em script.js
 
 async function renderEquipamentos(centralId = null, centralName = null) {
     document.querySelector('#clientes .filter-container').style.display = 'none';
@@ -280,10 +307,12 @@ async function renderEquipamentos(centralId = null, centralName = null) {
     const centralSelectFilter = document.getElementById('central-select-filter');
     const equipamentosSectionTitle = document.getElementById('equipamentos-section-title');
     if (!equipList || !centralSelectFilter || !equipamentosSectionTitle) return;
+
     centralFilterContainer.style.display = 'flex';
     equipList.innerHTML = '<p>Carregando equipamentos...</p>';
     equipamentosSectionTitle.textContent = centralName ? `Equipamentos da Central: ${centralName}` : 'Todos os Equipamentos';
     centralSelectFilter.onchange = handleCentralFilterChange;
+
     try {
         if (allCentraisData.length === 0) {
             const { resp = [] } = await fetchCentrais();
@@ -292,10 +321,12 @@ async function renderEquipamentos(centralId = null, centralName = null) {
         populateCentralFilter(allCentraisData, centralId, centralSelectFilter);
         const { resp: equipamentosFiltrados = [] } = await fetchEquipamentosAPI(centralId);
         equipList.innerHTML = '';
+
         if (equipamentosFiltrados.length === 0) {
             equipList.innerHTML = centralId ? '<p>Nenhum equipamento encontrado para esta central.</p>' : '<p>Selecione uma central para ver os equipamentos.</p>';
             return;
         }
+
         equipamentosFiltrados.forEach(e => {
             const card = document.createElement('div');
             card.className = '_card_14g8r_30 equipment-card';
@@ -321,7 +352,18 @@ async function renderEquipamentos(centralId = null, centralName = null) {
             status.textContent = 'ativo';
             const body = document.createElement('dl');
             body.className = 'equipment-details';
-            const fields = [['IP', e.ip], ['MAC', e.mac], ['Criado em', new Date(e.createdAt).toLocaleString('pt-BR')], ['Atualizado em', new Date(e.updatedAt).toLocaleString('pt-BR')]];
+            
+            // =======================================================================
+            // ALTERAÇÃO AQUI: Formata a data para remover os segundos
+            // =======================================================================
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const fields = [
+                ['IP', e.ip],
+                ['MAC', e.mac],
+                ['Criado em', new Date(e.createdAt).toLocaleString('pt-BR', options)],
+                ['Atualizado em', new Date(e.updatedAt).toLocaleString('pt-BR', options)]
+            ];
+
             fields.forEach(([label, val]) => {
                 const dt = document.createElement('dt'); dt.textContent = label;
                 const dd = document.createElement('dd'); dd.textContent = val;
