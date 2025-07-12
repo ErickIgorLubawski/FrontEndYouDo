@@ -11,51 +11,55 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-<div class="modal-overlay" id="acessos-modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modal-title">Detalhes do Acesso</h3>
-      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-    </div>
-    <div class="modal-body" id="acessos-list-container">
-      </div>
-  </div>
-</div>
 <body>
+  <div class="modal-overlay" id="acessos-modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Detalhes do Acesso</h3>
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="acessos-list-container">
+      </div>
+    </div>
+  </div>
+
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="logo"><img src="./img/logo_YouDO-1.png" alt="Logo YouDO"></div>
       <nav>
         <ul>
-
           <li class="centrais">
             <a><span class="_icon_10oo3_63">🏢</span><span class="_text_10oo3_67">Centrais</span></a>
           </li>
-
           <li class="equipamento">
             <a><span class="_icon_10oo3_63">🔧</span><span class="_text_10oo3_67">Equipamentos</span></a>
           </li>
-
           <li class="clientes">
             <a><span class="_icon_10oo3_63">👥</span><span class="_text_10oo3_67">Clientes</span></a>
           </li>
-
           <li class="configuracoes">
             <a><span class="_icon_10oo3_63">⚙️</span><span class="_text_10oo3_67">Configurações</span></a>
           </li>
-
           <li class="sair">
             <a id="logout-link" href="login.html">
               <span class="_icon_10oo3_63">🚪</span>
               <span class="_text_10oo3_67">Sair</span>
             </a>
           </li>
-
         </ul>
       </nav>
       <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
     </aside>
+    
     <main>
+      <div class="dark-mode-toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+        <span class="dark-mode-label">Modo Escuro</span>
+      </div>
+
       <section id="centrais" class="content-section active">
         <div class="breadcrumb-container" id="centrais-breadcrumb"></div>
         <h2 id="centrais-section-title">Centrais</h2>
@@ -68,7 +72,7 @@
         <div class="central-filter-container">
             <label for="central-select-filter" class="sr-only">Filtrar por Central:</label>
             <select id="central-select-filter" class="filter-select">
-                </select>
+            </select>
         </div>
         <div id="equipamentos-list" class="card-list"></div>
       </section>
@@ -82,9 +86,16 @@
             <button id="user-search-btn" class="search-btn">Buscar</button>
             <button id="user-clear-btn" class="clear-btn" style="display:none;">Limpar</button>
           </div>
-        </div> <table>
+          <div class="search-container">
+            <input type="text" id="user-name-search-input" placeholder="Buscar por Nome..." class="search-input">
+            <button id="user-name-search-btn" class="search-btn">Buscar</button>
+            <button id="user-name-clear-btn" class="clear-btn" style="display:none;">Limpar</button>
+          </div>
+        </div>
+        <table>
           <thead>
             <tr>
+              <th>Foto</th>
               <th>ID</th>
               <th>Nome</th>
               <th>Acessos</th>
@@ -93,7 +104,7 @@
             </tr>
           </thead>
           <tbody id="clientes-tbody">
-            </tbody>
+          </tbody>
         </table>
       </section>
 
@@ -101,7 +112,6 @@
         <div class="breadcrumb-container" id="configuracoes-breadcrumb"></div>
         <h2 id="configuracoes-section-title">Configurações</h2>
         <div class="config-grid">
-
           <div class="config-card">
             <div class="config-card__header">
               <span class="config-card__icon">📊</span>
@@ -126,7 +136,6 @@
               </div>
             </div>
           </div>
-
           <div class="config-card">
             <div class="config-card__header">
               <span class="config-card__icon">📚</span>
@@ -142,7 +151,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -153,14 +161,6 @@
         </div>
       </section>
     </main>
-  </div>
-
-  <div class="dark-mode-toggle-container">
-    <label class="switch">
-      <input type="checkbox" id="darkModeToggle">
-      <span class="slider round"></span>
-    </label>
-    <span class="dark-mode-label">Modo Escuro</span>
   </div>
 
   <script type="module" src="./script.js"></script>

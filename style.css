@@ -20,9 +20,9 @@
       font-family: 'Lato', sans-serif;
   }
   
-  /* ==========================================================================
-     2. PÁGINA DE LOGIN
-     ========================================================================== */
+/* ==========================================================================
+   2. PÁGINA DE LOGIN
+   ========================================================================== */
   
   .login-body {
     background-color: #f0f2f5;
@@ -114,9 +114,9 @@
     animation: fadeOutUp 0.5s forwards;
   }
   
-  /* ==========================================================================
-     3. ESTRUTURA PRINCIPAL DO DASHBOARD
-     ========================================================================== */
+/* ==========================================================================
+   3. ESTRUTURA PRINCIPAL DO DASHBOARD
+   ========================================================================== */
   
   .app {
     display: flex;
@@ -153,6 +153,16 @@
   .logo img {
     max-width: 100%;
     height: auto;
+  }
+
+  .client-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e0e0e0;
+    display: block;
+    margin: 0 auto;
   }
   
   .sidebar nav {
@@ -222,19 +232,19 @@
   }
   
   .content-section.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
     opacity: 1;
     transform: translateY(0);
   }
   
-  /* ==========================================================================
-     4. COMPONENTES GERAIS (Cards, Tabelas, Filtros, etc.)
-     ========================================================================== */
+/* ==========================================================================
+   4. COMPONENTES GERAIS (Cards, Tabelas, Filtros, etc.)
+   ========================================================================== */
   
   /* --- Estilo dos Cards --- */
   .card-list {
     display: grid;
-    /* ALTERADO: Aumenta a largura mínima de cada card para dar mais espaço */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
   }
@@ -285,7 +295,6 @@
     color: #6b7280;
   }
   
-  /* CORREÇÃO DO LAYOUT */
   .card-details-container {
       display: flex;
       flex-direction: column;
@@ -326,13 +335,13 @@
   ._online_14g8r_57, .status.ativo {
     background-color: #dcfce7;
     color: #166534;
-    border-color: #4ade80; /* Contorno verde */
+    border-color: #4ade80;
   }
   
   ._offline_14g8r_62 {
     background-color: #fee2e2;
     color: #991b1b;
-    border-color: #f87171; /* Contorno vermelho */
+    border-color: #f87171;
   }
   
   /* --- Estilos da Tabela --- */
@@ -370,9 +379,9 @@
   /* --- Estilos dos Filtros e Busca --- */
   .central-filter-container, .filter-container {
     margin-bottom: 20px;
-    display: none; /* Escondido por padrão, JS controla a visibilidade */
+    display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
   }
   
@@ -431,9 +440,9 @@
     font-weight: bold;
   }
   
-  /* ==========================================================================
-     5. ESTILOS DO MODAL DE ACESSOS
-     ========================================================================== */
+/* ==========================================================================
+   5. ESTILOS DO MODAL DE ACESSOS
+   ========================================================================== */
   
   .modal-overlay {
     position: fixed;
@@ -566,12 +575,12 @@
     color: #374151;
   }
   
-  /* ==========================================================================
-     6. DARK MODE
-     ========================================================================== */
+/* ==========================================================================
+   6. DARK MODE
+   ========================================================================== */
   
   body.dark-mode {
-    background-color: #18181b; /* Cinza um pouco mais quente */
+    background-color: #18181b;
     color: #e0e0e0;
   }
   
@@ -597,7 +606,7 @@
   body.dark-mode .sidebar nav ul li:hover a,
   body.dark-mode .sidebar nav ul li.active a {
     background: #3f3f46;
-    color: #fb923c; /* Laranja mais suave */
+    color: #fb923c;
   }
   
   body.dark-mode .toggle-btn,
@@ -767,7 +776,6 @@
   line-height: 1.6;
 }
 
-/* Itens de Status */
 .status-item {
   display: flex;
   justify-content: space-between;
@@ -796,7 +804,6 @@
   color: #166534;
 }
 
-/* Links de Recurso */
 .resource-links {
   margin-top: 1rem;
 }
@@ -858,7 +865,6 @@ body.dark-mode .resource-button.postman svg {
    8. MELHORIAS DE LAYOUT PARA CARD DE EQUIPAMENTO
    ========================================================================== */
 
-/* Remove a definição de float e margin que causa a quebra */
 .equipment-details dt, 
 .equipment-details dd {
   float: none;
@@ -866,23 +872,22 @@ body.dark-mode .resource-button.postman svg {
   margin: 0;
 }
 
-/* Aplica o layout de Grid no container da lista */
 .equipment-details {
   display: grid;
-  grid-template-columns: auto 1fr; /* Coluna 1 (label) se ajusta ao conteúdo, Coluna 2 (valor) ocupa o resto */
-  gap: 0.5rem 1rem;                /* Espaçamento: 0.5rem vertical, 1rem horizontal */
+  grid-template-columns: auto 1fr; 
+  gap: 0.5rem 1rem;               
   align-items: center;
   margin-top: 1rem;
 }
 
 .equipment-details dt {
-  font-weight: 600;       /* Dando mais destaque para os labels */
+  font-weight: 600;       
   color: #4b5563;
 }
 
 .equipment-details dd {
-  text-align: right;      /* Alinha os valores à direita, fica mais organizado */
-  word-break: break-all;  /* Quebra o MAC address ou IP se for muito longo */
+  text-align: right;      
+  word-break: break-all;
   color: #111827;
 }
         
@@ -893,4 +898,85 @@ body.dark-mode .equipment-details dt {
 
 body.dark-mode .equipment-details dd {
     color: #d1d5db;
+}
+/* ==========================================================================
+   9. DARK MODE TOGGLE SWITCH (VERSÃO ATUALIZADA)
+   ========================================================================== */
+
+/* Container que segura o botão e o texto */
+.dark-mode-toggle-container {
+  position: absolute; /* ALTERADO: para se posicionar dentro do <main> */
+  top: 2rem; /* Alinha com o padding do <main> */
+  right: 2rem; /* Alinha com o padding do <main> */
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  
+  /* ALTERADO: Removemos o estilo do container */
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* O "invólucro" do switch (interruptor) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+/* Esconde o checkbox padrão do HTML */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* O "trilho" do interruptor */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+/* O círculo/botão que desliza */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Sombra sutil no botão */
+}
+
+/* Estilo para quando o interruptor está LIGADO */
+input:checked + .slider {
+  background-color: #ec6619; /* Cor laranja da sua marca */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ec6619;
+}
+
+/* Animação do círculo deslizando quando LIGADO */
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* NOVO: Esconde o texto "Modo Escuro" */
+.dark-mode-label {
+  display: none;
 }
