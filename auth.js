@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // return; // Use 'return' para não continuar para o fetch durante o teste.
 
       try {
-        const response = await fetch('http://localhost:3001/usuarios/token', {
+        const response = await fetch('http://177.71.174.32/usuarios/token', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

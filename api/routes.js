@@ -6,7 +6,7 @@ export async function fetchCentrais() {
     throw new Error('Token não encontrado. Faça login primeiro.');
   }
 
-  const resp = await fetch('http://localhost:3001/centrais', {
+  const resp = await fetch('http://177.71.174.32/centrais', {
     method: 'GET',
     headers: {
       'token': token,
@@ -34,7 +34,7 @@ export async function fetchEquipamentos(device_id = null) {
   //console.log('centralid DEBUG MEU',device_id)
 
   // CORREÇÃO 1: O endpoint correto é 'equipamentosdb'
-  let url = 'http://localhost:3001/equipamentosdb';
+  let url = 'http://177.71.174.32/equipamentosdb';
 
   if (device_id) {
     // CORREÇÃO 2: O nome do parâmetro correto é 'central_id'
@@ -77,10 +77,10 @@ export async function fetchClientes(equipamentoID = null) { // Torne o parâmetr
   let url;
   if (equipamentoID) {
     // ATUALIZADO: Sua nova rota de filtro por equipamento
-    url = `http://localhost:3001/usuarios/central?equipamento=${equipamentoID}`;
+    url = `http://177.71.174.32/usuarios/central?equipamento=${equipamentoID}`;
   } else {
     // Se nenhum equipamentoID for fornecido, chamamos a rota para LISTAR TODOS OS USUÁRIOS
-    url = 'http://localhost:3001/usuarios'; // Assumindo que esta rota lista todos
+    url = 'http://177.71.174.32/usuarios'; // Assumindo que esta rota lista todos
   }
   
   console.log('DEBUG: URL fetchClientes (para usuários):', url);
@@ -111,7 +111,7 @@ export async function fetchClientesPorCentral(centralId) {
   }
 
   // Monta a URL para o endpoint que filtra usuários por central.
-  const url = `http://localhost:3001/usuarioslocal?central=${centralId}`;
+  const url = `http://177.71.174.32/usuarioslocal?central=${centralId}`;
   
   console.log('DEBUG: Buscando clientes por central. URL:', url);
 
@@ -141,7 +141,7 @@ export async function fetchClientePorIdYD(idyd) {
   }
 
   // Monta a URL para o endpoint que busca um usuário por idyd
-  const url = `http://localhost:3001/usuarios?idyd=${idyd}`;
+  const url = `http://177.71.174.32/usuarios?idyd=${idyd}`;
   
   console.log('DEBUG: Buscando cliente por idYD. URL:', url);
 
@@ -175,7 +175,7 @@ export async function fetchClientesPorNome(nome) {
   }
 
   // Monta a URL para o endpoint de busca por nome
-  const url = `http://localhost:3001/usuariosname?name=${encodeURIComponent(nome)}`;
+  const url = `http://177.71.174.32/usuariosname?name=${encodeURIComponent(nome)}`;
   
   console.log('DEBUG: Buscando clientes por nome. URL:', url);
 
