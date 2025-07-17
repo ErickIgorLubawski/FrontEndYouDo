@@ -206,7 +206,20 @@ async function renderCentrais() {
             const card = document.createElement('div');
             card.className = '_card_14g8r_30';
             card.onclick = () => navigateTo('equipamentos', { centralId: c.device_id, centralName: c.nomeEdificio });
-            card.innerHTML = `<div class="_cardHeader_14g8r_44"><h3>${c.nomeEdificio}</h3><span class="_status_14g8r_51 _${c.status || 'offline'}_14g8r_57">${c.status}</span></div><div class="card-content"><div class="_controllerIcon_14g8r_67"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c8300c" viewBox="0 0 256 256"><path d="M248,210H230V94h2a6,6,0,0,0,0-12H182V46h2a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12h2V210H24a6,6,0,0,0,0,12H248a6,6,0,0,0,0-12ZM218,94V210H182V94ZM54,46H170V210H142V160a6,6,0,0,0-6-6H88a6,6,0,0,0-6,6v50H54Zm76,164H94V166h36ZM74,80a6,6,0,0,1,6-6H96a6,6,0,0,1,0,12H80A6,6,0,0,1,74,80Zm48,0a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,80ZM80,126a6,6,0,0,1,0-12H96a6,6,0,0,1,0,12Zm42-6a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,120Z"></path></svg></div><p class="card-location">${c.rua}, ${c.numero} - ${c.bairro}</p><div class="card-details-container"><p class="central-id"><span>Device ID:</span> <strong>${c.device_id}</strong></p><p class="central-vpn"><span>IP VPN:</span> <strong>${c.ip_VPN || 'N/A'}</strong></p></div></div>`;
+            card.innerHTML = `<div class="_cardHeader_14g8r_44">
+                                <h3>${c.nomeEdificio}</h3>
+                                <span class="_status_14g8r_51 ${c.status === 'online' ? '_online_14g8r_57' : '_offline_14g8r_62'}">${c.status}</span>
+                              </div>
+                              <div class="card-content">
+                                <div class="_controllerIcon_14g8r_67">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c8300c" viewBox="0 0 256 256"><path d="M248,210H230V94h2a6,6,0,0,0,0-12H182V46h2a6,6,0,0,0,0-12H40a6,6,0,0,0,0,12h2V210H24a6,6,0,0,0,0,12H248a6,6,0,0,0,0-12ZM218,94V210H182V94ZM54,46H170V210H142V160a6,6,0,0,0-6-6H88a6,6,0,0,0-6,6v50H54Zm76,164H94V166h36ZM74,80a6,6,0,0,1,6-6H96a6,6,0,0,1,0,12H80A6,6,0,0,1,74,80Zm48,0a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,80ZM80,126a6,6,0,0,1,0-12H96a6,6,0,0,1,0,12Zm42-6a6,6,0,0,1,6-6h16a6,6,0,0,1,0,12H128A6,6,0,0,1,122,120Z"></path></svg>
+                                </div>
+                                <p class="card-location">${c.rua}, ${c.numero} - ${c.bairro}</p>
+                                <div class="card-details-container">
+                                  <p class="central-id"><span>Device ID:</span> <strong>${c.device_id}</strong></p>
+                                  <p class="central-vpn"><span>IP VPN:</span> <strong>${c.ip_VPN || 'N/A'}</strong></p>
+                                </div>
+                              </div>`;
             centralList.append(card);
         });
     } catch (err) { console.error('ERROR: Falha ao carregar centrais:', err); }
@@ -239,9 +252,33 @@ async function renderEquipamentos(centralId = null, centralName = null) {
         equipamentosFiltrados.forEach(e => {
             const card = document.createElement('div');
             card.className = '_card_14g8r_30 equipment-card';
-            card.onclick = () => navigateTo('clientes', { centralId: e.central_id, centralName: allCentraisData.find(c => c.device_id === e.central_id)?.nomeEdificio || 'Central', equipamentoId: e.device_id, equipamentoName: e.device_hostname });
+            card.onclick = () => navigateTo('clientes', { 
+                centralId: e.central_id, 
+                centralName: allCentraisData.find(c => c.device_id === e.central_id)?.nomeEdificio || 'Central', 
+                equipamentoId: e.device_id, 
+                equipamentoName: e.device_hostname 
+            });
+        
             const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-            card.innerHTML = `<div class="_cardHeader_14g8r_44"><p class="equipment-id">${e.device_id}</p><div class="_controllerIcon_14g8r_67"><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c8300c" viewBox="0 0 256 256"><path d="M222,40V76a6,6,0,0,1-12,0V46H180a6,6,0,0,1,0-12h36A6,6,0,0,1,222,40Zm-6,134a6,6,0,0,0-6,6v30H180a6,6,0,0,0,0,12h36a6,6,0,0,0,6-6V180A6,6,0,0,0,216,174ZM76,210H46V180a6,6,0,0,0-12,0v36a6,6,0,0,0,6,6H76a6,6,0,0,0,0-12ZM40,82a6,6,0,0,0,6-6V46H76a6,6,0,0,0,0-12H40a6,6,0,0,0-6,6V76A6,6,0,0,0,40,82Zm136,92a6,6,0,0,1-4.8-2.4,54,54,0,0,0-86.4,0,6,6,0,1,1-9.6-7.2,65.65,65.65,0,0,1,29.69-22.26,38,38,0,1,1,46.22,0A65.65,65.65,0,0,1,180.8,164.4,6,6,0,0,1,176,174Zm-48-36a26,26,0,1,0-26-26A26,26,0,0,0,128,138Z"></path></svg></div></div><h3>${e.device_hostname}</h3><span class="_status_14g8r_51 status ativo">ativo</span><dl class="equipment-details"><dt>IP</dt><dd>${e.ip}</dd><dt>MAC</dt><dd>${e.mac}</dd><dt>Criado em</dt><dd>${new Date(e.createdAt).toLocaleString('pt-BR', options)}</dd><dt>Atualizado em</dt><dd>${new Date(e.updatedAt).toLocaleString('pt-BR', options)}</dd></dl>`;
+        
+            // CORREÇÃO: O código SVG completo foi restaurado dentro do innerHTML.
+            card.innerHTML = `<div class="_cardHeader_14g8r_44">
+                                <p class="equipment-id">${e.device_id}</p>
+                                <div class="_controllerIcon_14g8r_67">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c8300c" viewBox="0 0 256 256">
+                                        <path d="M222,40V76a6,6,0,0,1-12,0V46H180a6,6,0,0,1,0-12h36A6,6,0,0,1,222,40Zm-6,134a6,6,0,0,0-6,6v30H180a6,6,0,0,0,0,12h36a6,6,0,0,0,6-6V180A6,6,0,0,0,216,174ZM76,210H46V180a6,6,0,0,0-12,0v36a6,6,0,0,0,6,6H76a6,6,0,0,0,0-12ZM40,82a6,6,0,0,0,6-6V46H76a6,6,0,0,0,0-12H40a6,6,0,0,0-6,6V76A6,6,0,0,0,40,82Zm136,92a6,6,0,0,1-4.8-2.4,54,54,0,0,0-86.4,0,6,6,0,1,1-9.6-7.2,65.65,65.65,0,0,1,29.69-22.26,38,38,0,1,1,46.22,0A65.65,65.65,0,0,1,180.8,164.4,6,6,0,0,1,176,174Zm-48-36a26,26,0,1,0-26-26A26,26,0,0,0,128,138Z"></path>
+                                    </svg>
+                                </div>
+                              </div>
+                              <h3>${e.device_hostname}</h3>
+                              <span class="_status_14g8r_51 ${e.status === 'online' ? 'status ativo' : '_offline_14g8r_62'}">${e.status}</span>
+                              <dl class="equipment-details">
+                                <dt>IP</dt><dd>${e.ip}</dd>
+                                <dt>MAC</dt><dd>${e.mac}</dd>
+                                <dt>Criado em</dt><dd>${new Date(e.createdAt).toLocaleString('pt-BR', options)}</dd>
+                                <dt>Atualizado em</dt><dd>${new Date(e.updatedAt).toLocaleString('pt-BR', options)}</dd>
+                              </dl>`;
+                              
             equipList.append(card);
         });
     } catch (err) { console.error('ERROR: Falha ao carregar equipamentos:', err); }
